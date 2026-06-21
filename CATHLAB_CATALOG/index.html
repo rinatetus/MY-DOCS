@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CathLab Catalog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>CathLab <strong>Catalog</strong></h1>
+        <p>קטלוג ציוד מעבדת קטטריזציה</p>
+    </div>
+    <div class="header-actions">
+        <label class="btn-import" title="ייבא קובץ Excel">
+            📥 ייבא מ-Excel
+            <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" style="display:none">
+        </label>
+        <button class="btn-clear-data" id="clearDataBtn" title="חזור לנתוני ברירת מחדל">🔄 אפס נתונים</button>
+    </div>
+</header>
+
+<div class="filters">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 חיפוש לפי שם, תיאור או מק&quot;ט...">
+    </div>
+    <div class="filter-group">
+        <select id="categoryFilter">
+            <option value="">כל הקטגוריות</option>
+        </select>
+        <select id="manufacturerFilter">
+            <option value="">כל היצרנים</option>
+        </select>
+    </div>
+    <div class="results-count">
+        <span id="resultsCount"></span>
+        <button id="clearFilters">נקה סינון</button>
+    </div>
+</div>
+
+<main>
+    <div id="productsGrid" class="products-grid"></div>
+    <div id="noResults" class="no-results" style="display:none">
+        <p>לא נמצאו מוצרים התואמים את החיפוש</p>
+    </div>
+</main>
+
+<footer>
+    <p>CathLab Catalog &copy; 2026</p>
+</footer>
+
+<!-- Modal -->
+<div id="modal" class="modal" style="display:none">
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast" style="display:none"></div>
+
+<!-- SheetJS for Excel parsing -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "id": "CAT-001",
+      "name": "Judkins Right Catheter JR4",
+      "category": "קטטרים",
+      "manufacturer": "Medtronic",
+      "ref": "JR4-6F-100",
+      "description": "קטטר אבחוני לעורק הכלילי הימני. מיועד לצנתור אבחוני של לב.",
+      "sizes": ["3.5", "4.0", "5.0"],
+      "image": "",
+      "notes": ""
+    },
+    {
+      "id": "CAT-002",
+      "name": "Judkins Left Catheter JL4",
+      "category": "קטטרים",
+      "manufacturer": "Medtronic",
+      "ref": "JL4-6F-100",
+      "description": "קטטר אבחוני לעורק הכלילי השמאלי. מיועד לצנתור אבחוני של לב.",
+      "sizes": ["3.5", "4.0", "5.0"],
+      "image": "",
+      "notes": ""
+    },
+    {
+      "id": "STN-001",
+      "name": "Resolute Onyx DES Stent",
+      "category": "סטנטים",
+      "manufacturer": "Medtronic",
+      "ref": "RONYX-3.0-18",
+      "description": "סטנט מציפת תרופה (DES) לטיפול בהיצרות עורקים כליליים.",
+      "sizes": ["2.5x15", "3.0x18", "3.5x18", "4.0x20"],
+      "image": "",
+      "notes": "שמור בטמפרטורת חדר"
+    },
+    {
+      "id": "GW-001",
+      "name": "Runthrough NS Guidewire",
+      "category": "חוטי הנחיה",
+      "manufacturer": "Terumo",
+      "ref": "RF-GA035183M",
+      "description": "חוט הנחיה קורונרי גמיש ועמיד. קצה רך במיוחד לניווט בטוח.",
+      "sizes": ["0.014 inch x 180cm"],
+      "image": "",
+      "notes": ""
+    },
+    {
+      "id": "BAL-001",
+      "name": "Trek PTCA Balloon",
+      "category": "בלונים",
+      "manufacturer": "Abbott",
+      "ref": "TREK-2.5-20-145",
+      "description": "בלון PTCA לרחבת עורקים כליליים. פרופיל נמוך לניווט קל.",
+      "sizes": ["2.0x15", "2.5x20", "3.0x20", "3.5x15"],
+      "image": "",
+      "notes": ""
+    },
+    {
+      "id": "SHT-001",
+      "name": "Radifocus Introducer Sheath",
+      "category": "מעטפות",
+      "manufacturer": "Terumo",
+      "ref": "RS-RB6S23",
+      "description": "מעטפה הידרופילית לגישה דרך עורק הרדיאל. מיועדת לצנתור זרועי.",
+      "sizes": ["5F", "6F", "7F"],
+      "image": "",
+      "notes": ""
+    }
+  ]
+}
