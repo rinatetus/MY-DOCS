@@ -349,6 +349,72 @@ footer a{color:var(--teal-soft);font-weight:600;}
 .cat-label-procs{color:#7C3AED;}
 .cat-label-procs::before{content:"";display:inline-block;width:4px;height:18px;border-radius:3px;
   background:linear-gradient(180deg,#DC2626,#7C3AED);margin-left:6px;vertical-align:middle;}
+
+/* ===== Clinical procedure cards ===== */
+.cproc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin-bottom:24px;}
+.cproc{position:relative;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+  cursor:pointer;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .22s,box-shadow .22s,border-color .22s;
+  opacity:0;transform:translateY(14px);animation:cprocIn .5s cubic-bezier(.2,.7,.3,1) forwards;}
+@keyframes cprocIn{to{opacity:1;transform:none;}}
+.cproc::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--c,#25BA9C);opacity:.9;}
+.cproc.c-teal{--c:#25BA9C;} .cproc.c-magenta{--c:#EB3D85;} .cproc.c-purple{--c:#7C3AED;}
+.cproc.c-blue{--c:#2563EB;} .cproc.c-amber{--c:#F59E0B;} .cproc.c-red{--c:#DC2626;} .cproc.c-green{--c:#059669;}
+.cproc:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent;}
+.cproc-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:13px;
+  box-shadow:var(--shadow-sm);transition:transform .3s;}
+.cproc:hover .cproc-ic{transform:scale(1.08) rotate(-4deg);}
+.cproc-body h3{margin:0 0 2px;font-size:1.04rem;font-weight:800;color:var(--navy);letter-spacing:-.2px;}
+.cproc-he{font-size:.82rem;color:var(--c,#25BA9C);font-weight:700;margin-bottom:7px;}
+.cproc-body p{margin:0;font-size:.8rem;color:var(--muted);line-height:1.5;}
+.cproc-foot{margin-top:13px;padding-top:11px;border-top:1px dashed var(--border);}
+.cproc-count{font-size:.78rem;font-weight:800;}
+.cproc-soon{font-size:.75rem;font-weight:800;color:#B25C00;background:#FEF3E2;border:1px solid #F6D9A8;
+  padding:3px 11px;border-radius:999px;}
+.cproc.is-soon{opacity:0;} .cproc.is-soon:hover{transform:translateY(-2px);}
+.cproc.is-soon .cproc-ic{filter:saturate(.7);}
+.cproc .arrow{position:absolute;left:16px;top:20px;color:var(--border);transition:.2s;}
+.cproc:hover .arrow{color:var(--c,#25BA9C);transform:translateX(-4px);}
+
+/* ===== Procedure equipment page ===== */
+.proc-hero{position:relative;border-radius:var(--radius-lg);padding:26px 28px;color:#fff;overflow:hidden;
+  display:flex;align-items:center;gap:20px;margin-bottom:18px;box-shadow:var(--shadow);}
+.proc-hero .arc{position:absolute;width:240px;height:240px;border:30px solid rgba(255,255,255,.12);border-radius:50%;
+  top:-90px;left:-60px;}
+.proc-hero-ic{width:62px;height:62px;border-radius:18px;background:rgba(255,255,255,.16);display:grid;place-items:center;
+  flex:none;backdrop-filter:blur(4px);}
+.proc-hero-ic svg{width:30px;height:30px;}
+.proc-hero h1{margin:0;font-size:1.55rem;font-weight:800;letter-spacing:-.3px;}
+.proc-hero-he{font-size:.92rem;font-weight:700;opacity:.92;margin:2px 0 6px;}
+.proc-hero p{margin:0;font-size:.85rem;opacity:.88;line-height:1.5;max-width:640px;}
+.pe-info{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:13px 16px;margin-bottom:18px;font-size:.85rem;color:var(--ink);}
+.pe-info-ic{width:34px;height:34px;border-radius:10px;background:var(--navy-bg);color:var(--navy);display:grid;place-items:center;flex:none;}
+.pe-group{margin-bottom:18px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);}
+.pe-group-head{display:flex;align-items:center;gap:10px;padding:11px 15px;background:#fff;border-bottom:1px solid var(--border);}
+.pe-group-head b{font-size:1rem;color:var(--navy);font-weight:800;}
+.pe-group-head .chip{font-size:.72rem;background:var(--navy-bg);color:var(--navy);border-radius:999px;padding:2px 10px;font-weight:700;}
+.pe-alts{margin-right:auto;font-size:.74rem;color:var(--muted);font-weight:700;}
+.pe-table{width:100%;border-collapse:collapse;font-size:.84rem;}
+.pe-table thead th{text-align:right;padding:9px 14px;background:var(--navy-bg);color:var(--navy);font-weight:800;
+  font-size:.74rem;letter-spacing:.2px;white-space:nowrap;}
+.pe-table tbody td{padding:10px 14px;border-top:1px solid var(--border);vertical-align:middle;}
+.pe-table tbody tr:hover{background:var(--teal-bg);}
+.pe-desc{display:flex;align-items:center;gap:9px;min-width:200px;}
+.pe-desc .sdot{width:9px;height:9px;border-radius:50%;flex:none;}
+.pe-name{font-weight:700;color:var(--navy);}
+.pe-sub{font-size:.72rem;color:var(--muted);}
+.pe-sku{font-family:ui-monospace,monospace;font-size:.8rem;background:var(--teal-bg);color:var(--teal-hover);
+  padding:2px 8px;border-radius:7px;font-weight:700;}
+.pe-ref{font-family:ui-monospace,monospace;font-size:.8rem;color:var(--ink);}
+.pe-price{font-weight:800;color:var(--navy);white-space:nowrap;}
+.pe-price small{font-weight:600;color:var(--muted);}
+.proc-soon{text-align:center;padding:40px 24px;background:var(--card);border:1px dashed var(--border);border-radius:var(--radius-lg);}
+.proc-soon-badge{display:inline-block;background:#FEF3E2;color:#B25C00;border:1px solid #F6D9A8;font-weight:800;
+  font-size:.78rem;padding:4px 14px;border-radius:999px;margin-bottom:14px;}
+.proc-soon h2{margin:0 0 8px;font-size:1.2rem;color:var(--navy);}
+.proc-soon p{max-width:520px;margin:0 auto 18px;color:var(--muted);font-size:.88rem;line-height:1.6;}
+@media(max-width:560px){.proc-hero{flex-direction:column;text-align:center;}.proc-hero p{max-width:none;}}
+
 .dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
 .dept-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 14px;text-align:center;
   cursor:pointer;transition:.18s;position:relative;box-shadow:var(--shadow-sm);}
@@ -498,7 +564,15 @@ const ICON = {
   chev:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
   plus:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
   arrow:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>',
-  upload:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>'
+  upload:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>',
+  angiogram:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l2-7 3 18 3-13 2 5h5"/></svg>',
+  heartcath:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 9.5 5"/><path d="M16 14h6M19 11v6"/></svg>',
+  ffr:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 3 14 2-9h4"/><circle cx="20" cy="12" r="1.6"/></svg>',
+  ivus:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>',
+  oct:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 12 7 7M12 12l5-2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>',
+  pci:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4M16 12h4"/><rect x="8" y="8" width="8" height="8" rx="1.5"/><path d="M8 10h8M8 14h8"/></svg>',
+  cto:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6M15 12h6"/><path d="m9 9 3 3-3 3M12 9l3 3-3 3"/></svg>',
+  graft:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a6 6 0 0 0 12 0V3"/><path d="M6 21v-4M18 21v-4M6 17h12"/></svg>'
 };
 
 // ===== Department model =====
@@ -525,6 +599,56 @@ const DEPARTMENTS = [
 ];
 const CARDIO = DEPARTMENTS[0];
 
+// ===== Clinical procedures per device category =====
+// curves = prefix matchers against real catheter curves in DATA.
+// soon=true → equipment defined but tender data not yet loaded.
+const CLINICAL = {
+  diagnostic: {
+    label:"Diagnostic Catheters", he:"קתטרים אבחנתיים",
+    procs:[
+      {id:"coronary-angio", name:"Coronary Angiography", he:"צנתור כלילי אבחנתי", icon:"angiogram", color:"teal",
+        desc:"הדמיית עורקים כליליים עם קתטרי Judkins / Amplatz / Femoral.", curves:["JL","JR","AL","AR","FL","FR"]},
+      {id:"rl-heart-cath", name:"Right & Left Heart Catheterization", he:"צנתור לב ימני ושמאלי", icon:"heartcath", color:"magenta",
+        desc:"מדידות לחצים והמודינמיקה עם Pigtail ו-Multipurpose.", curves:["PIG","MPA"]},
+      {id:"aorto-ventriculo", name:"Aortography & Ventriculography", he:"אאורטוגרפיה וונטריקולוגרפיה", icon:"angiogram", color:"purple",
+        desc:"הזרקת ניגוד לחדר/אבי העורקים עם Pigtail.", curves:["PIG","J CURVE"]},
+      {id:"peripheral-carotid", name:"Peripheral & Carotid Angiography", he:"אנגיוגרפיה היקפית וקרוטידית", icon:"angio", color:"blue",
+        desc:"גישה סלקטיבית לכלי דם היקפיים/קרוטיד עם Simmons / VTK / Berenstein.", curves:["SIMMONS","VTK","BER","IM","DIAG 3DRC"]},
+      {id:"ffr-ifr", name:"FFR / iFR", he:"רזרבה זרימתית פרקציונלית", icon:"ffr", color:"amber", soon:true,
+        desc:"הערכה תפקודית של היצרות באמצעות חוט לחץ (Pressure Wire)."},
+      {id:"ivus", name:"IVUS", he:"אולטרסאונד תוך-כלילי", icon:"ivus", color:"red", soon:true,
+        desc:"הדמיית חתך הכלי באמצעות קתטר אולטרסאונד."},
+      {id:"oct", name:"OCT", he:"טומוגרפיה אופטית קוהרנטית", icon:"oct", color:"green", soon:true,
+        desc:"הדמיה ברזולוציה גבוהה באמצעות קתטר אופטי."}
+    ]
+  },
+  guiding: {
+    label:"Guiding Catheters", he:"קתטרים מובילים",
+    procs:[
+      {id:"pci", name:"PCI / Coronary Angioplasty", he:"צנתור טיפולי / אנגיופלסטיה", icon:"pci", color:"teal",
+        desc:"הרחבת היצרות והשתלת סטנט עם קתטרים מובילים EBU / XB / Judkins.", curves:["EBU","XB","JL","JR"]},
+      {id:"cto", name:"CTO / Complex PCI", he:"חסימה כרונית / צנתור מורכב", icon:"cto", color:"magenta",
+        desc:"גישה לחסימות כרוניות הדורשת תמיכה גבוהה (EBU / XB / Mach / Amplatz).", curves:["EBU","XB","MACH","AL"]},
+      {id:"graft", name:"Bypass Graft Intervention", he:"התערבות במעקפים", icon:"graft", color:"purple",
+        desc:"גישה למעקפים ורידיים/עורקיים (AR / Multipurpose / IM / 3DRC).", curves:["AR","MPA","IM","BEACON","VBT","3DRC","XBRCA"]},
+      {id:"bifurcation", name:"Bifurcation / Left Main", he:"ביפורקציה / Left Main", icon:"pci", color:"blue",
+        desc:"טיפול בהסתעפויות וגזע ראשי הדורש תמיכה חזקה (EBU / XB).", curves:["EBU","XB"]}
+    ]
+  }
+};
+function curveMatches(curve, prefixes){
+  const c=(curve||"").toUpperCase().trim();
+  return prefixes.some(p=>c.startsWith(p.toUpperCase()));
+}
+function procItems(cat, proc){
+  if(proc.soon || !proc.curves) return [];
+  return DATA.filter(p=>p.category===cat && curveMatches(p.curve, proc.curves));
+}
+const CLIN_COLORS = {
+  teal:["#25BA9C","#1A8C75"], magenta:["#EB3D85","#C02D6E"], purple:["#7C3AED","#5B21B6"],
+  blue:["#2563EB","#1D4ED8"], amber:["#F59E0B","#D97706"], red:["#DC2626","#991B1B"], green:["#059669","#047857"]
+};
+
 // ===== State =====
 let cart = [];
 const counts = {
@@ -550,6 +674,8 @@ function route(){
   closeSidebarMobile();
   if(parts[0]===""||parts[0]==="home") return renderHome();
   if(parts[0]==="dept") return renderDept(parts[1]);
+  if(parts[0]==="clin") return renderClinList(parts[1]||"diagnostic");
+  if(parts[0]==="proceq") return renderProcEq(parts[1]||"diagnostic", parts[2]||"");
   if(parts[0]==="cat") return renderCatalog(parts[1]||"cardiology", parts[2]||"all");
   if(parts[0]==="proc") return renderProcedure(parts[1]);
   if(parts[0]==="soon") return renderSoon(decodeURIComponent(parts.slice(1).join("/")||""));
@@ -578,7 +704,7 @@ function renderSidebar(active){
     if(g.subs){
       g.subs.forEach(s=>{
         const isAct = active.dept==="cardiology" && active.sub===s.id;
-        html += `<a class="${isAct?'active':''}" onclick="go('#/cat/cardiology/${s.id}')"><span>${s.label}</span><span class="cnt">${counts[s.id]}</span></a>`;
+        html += `<a class="${isAct?'active':''}" onclick="go('#/clin/${s.id}')"><span>${s.label}</span><span class="cnt">${counts[s.id]}</span></a>`;
       });
     } else {
       html += `<a class="dim" onclick="go('#/soon/${encodeURIComponent(g.label)}')"><span>${g.label}</span><span class="soon">בקרוב</span></a>`;
@@ -630,15 +756,15 @@ function renderHome(){
 
   <div class="cat-section-head cat-label-devices" style="margin-top:4px"><h3>Devices</h3></div>
   <div class="tiles">
-    <div class="tile c-teal" onclick="go('#/cat/cardiology/diagnostic')">
+    <div class="tile c-teal" onclick="go('#/clin/diagnostic')">
       <span class="arrow">${ICON.arrow}</span>
       <div class="tic" style="background:linear-gradient(135deg,#25BA9C,#1A8C75)">${ICON.cath}</div>
-      <h3>Diagnostic Catheters</h3><p>${counts.diagnostic} פריטים · 5 ספקים</p>
+      <h3>Diagnostic Catheters</h3><p>${CLINICAL.diagnostic.procs.length} פרוצדורות · ${counts.diagnostic} פריטים</p>
     </div>
-    <div class="tile c-magenta" onclick="go('#/cat/cardiology/guiding')">
+    <div class="tile c-magenta" onclick="go('#/clin/guiding')">
       <span class="arrow">${ICON.arrow}</span>
       <div class="tic" style="background:linear-gradient(135deg,#EB3D85,#C02D6E)">${ICON.cath}</div>
-      <h3>Guiding Catheters</h3><p>${counts.guiding} פריטים · 5 ספקים</p>
+      <h3>Guiding Catheters</h3><p>${CLINICAL.guiding.procs.length} פרוצדורות · ${counts.guiding} פריטים</p>
     </div>
     <div class="tile c-purple t-soon" onclick="go('#/soon/Introducer%20Sheaths')">
       <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
@@ -695,17 +821,17 @@ function renderDept(id){
     <!-- DEVICES SECTION -->
     <div class="cat-section-head cat-label-devices"><h3>Devices</h3><span style="font-size:.78rem;color:var(--muted);font-weight:600">ציוד · CathLab</span></div>
     <div class="tiles">
-      <div class="tile c-teal" onclick="go('#/cat/cardiology/diagnostic')">
+      <div class="tile c-teal" onclick="go('#/clin/diagnostic')">
         <span class="arrow">${ICON.arrow}</span>
         <div class="tic" style="background:linear-gradient(135deg,#25BA9C,#1A8C75)">${ICON.cath}</div>
         <h3>Diagnostic Catheters</h3>
-        <p>${counts.diagnostic} פריטים · 5 ספקים</p>
+        <p>${CLINICAL.diagnostic.procs.length} פרוצדורות · ${counts.diagnostic} פריטים</p>
       </div>
-      <div class="tile c-magenta" onclick="go('#/cat/cardiology/guiding')">
+      <div class="tile c-magenta" onclick="go('#/clin/guiding')">
         <span class="arrow">${ICON.arrow}</span>
         <div class="tic" style="background:linear-gradient(135deg,#EB3D85,#C02D6E)">${ICON.cath}</div>
         <h3>Guiding Catheters</h3>
-        <p>${counts.guiding} פריטים · 5 ספקים</p>
+        <p>${CLINICAL.guiding.procs.length} פרוצדורות · ${counts.guiding} פריטים</p>
       </div>
       <div class="tile c-purple t-soon" onclick="go('#/soon/Introducer%20Sheaths')">
         <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
@@ -761,6 +887,111 @@ function renderSoon(label){
         <button class="soon-back" onclick="go('#/cat/cardiology/diagnostic')">בינתיים — לקטלוג CathLab ${ICON.arrow}</button>
       </div>
     </div>`;
+}
+
+// ===== CLINICAL PROCEDURE LIST (device category → procedures) =====
+function renderClinList(cat){
+  const C = CLINICAL[cat];
+  if(!C) return renderCatalog("cardiology", cat);
+  renderSidebar({dept:"cardiology", sub:cat});
+  const m = document.getElementById("main");
+  const cards = C.procs.map((pr,i)=>{
+    const col = CLIN_COLORS[pr.color]||CLIN_COLORS.teal;
+    const n = pr.soon? 0 : procItems(cat, pr).length;
+    return `<div class="cproc c-${pr.color} ${pr.soon?'is-soon':''}" style="animation-delay:${i*55}ms" onclick="go('#/proceq/${cat}/${pr.id}')">
+      <span class="arrow">${ICON.arrow}</span>
+      <div class="cproc-ic" style="background:linear-gradient(135deg,${col[0]},${col[1]})">${ICON[pr.icon]||ICON.proc}</div>
+      <div class="cproc-body">
+        <h3>${esc(pr.name)}</h3>
+        <div class="cproc-he">${esc(pr.he)}</div>
+        <p>${esc(pr.desc)}</p>
+      </div>
+      <div class="cproc-foot">
+        ${pr.soon? `<span class="cproc-soon">בקרוב · ממתין לנתוני מכרז</span>`
+                 : `<span class="cproc-count" style="color:${col[0]}">${n} פריטים · חלופות + מחירים</span>`}
+      </div>
+    </div>`;
+  }).join("");
+  m.innerHTML = `
+    <div class="crumbs"><a onclick="go('#/home')">דף הבית</a> ${ICON.chevS()} <a onclick="go('#/dept/cardiology')">Cardiology · CathLab</a> ${ICON.chevS()} <b>${esc(C.label)}</b></div>
+    <div class="page-head">
+      <h1>${esc(C.label)}</h1>
+      <p class="lead">בחרי פרוצדורה כדי לראות את רשימת הציוד הנדרש — כולל חלופות שוות-ערך מספקים מקבילים, מק"ט שיבא, מק"ט יצרן ומחיר.</p>
+    </div>
+    <div class="cproc-grid">${cards}</div>`;
+}
+
+// ===== PROCEDURE EQUIPMENT (procedure → equipment + alternatives table) =====
+function renderProcEq(cat, procId){
+  const C = CLINICAL[cat];
+  if(!C) return renderHome();
+  const pr = C.procs.find(x=>x.id===procId);
+  if(!pr) return renderClinList(cat);
+  renderSidebar({dept:"cardiology", sub:cat});
+  const m = document.getElementById("main");
+  const col = CLIN_COLORS[pr.color]||CLIN_COLORS.teal;
+  const head = `
+    <div class="crumbs"><a onclick="go('#/home')">דף הבית</a> ${ICON.chevS()} <a onclick="go('#/dept/cardiology')">Cardiology</a> ${ICON.chevS()} <a onclick="go('#/clin/${cat}')">${esc(C.label)}</a> ${ICON.chevS()} <b>${esc(pr.name)}</b></div>
+    <div class="proc-hero" style="background:linear-gradient(135deg,${col[0]},${col[1]})">
+      <div class="arc"></div>
+      <div class="proc-hero-ic">${ICON[pr.icon]||ICON.proc}</div>
+      <div>
+        <h1>${esc(pr.name)}</h1>
+        <div class="proc-hero-he">${esc(pr.he)}</div>
+        <p>${esc(pr.desc)}</p>
+      </div>
+    </div>`;
+
+  if(pr.soon){
+    m.innerHTML = head + `
+      <div class="proc-soon">
+        <div class="proc-soon-badge">בקרוב</div>
+        <h2>ציוד ל-${esc(pr.name)} — ממתין לנתוני מכרז</h2>
+        <p>המבנה מוכן. ברגע שתעלי טבלת מכרז עבור <b>${esc(pr.name)}</b> (חוטי לחץ / קתטרי IVUS·OCT וכו'), היא תוצג כאן באותה טבלת חלופות: תיאור פריט, מק"ט שיבא, מק"ט יצרן ומחיר — עם הוספה לסל.</p>
+        <a class="soon-cta" href="https://wa.me/${PHONE_INTL}?text=${encodeURIComponent('היי, אני רוצה להוסיף נתוני ציוד לפרוצדורה: '+pr.name)}" target="_blank">${ICON.upload} לשלוח נתונים להוספה</a>
+      </div>`;
+    return;
+  }
+
+  const items = procItems(cat, pr);
+  const groups = items.map(p=>{
+    const rows = p.options.map(o=>{
+      const s = SUPPLIERS[o.distributor]||{color:"#999"};
+      const payload = btoa(unescape(encodeURIComponent(JSON.stringify({
+        id:p.id, curve:p.curve, french:p.french, length:p.length, cat:p.category,
+        dist:o.distributor, manu:o.manufacturer, name:o.name, ref:o.ref, sku:o.shebaSku||"", price:o.price||"", cur:o.currency||""
+      }))));
+      return `<tr>
+        <td class="pe-desc"><span class="sdot" style="background:${s.color}"></span>
+          <div><div class="pe-name">${esc(o.name||o.fullName||"—")}</div>
+          <div class="pe-sub">${esc(o.distributor)} · ${esc(o.manufacturer)}</div></div></td>
+        <td>${o.shebaSku?`<span class="pe-sku">${esc(o.shebaSku)}</span>`:'—'}</td>
+        <td>${o.ref?`<span class="pe-ref">${esc(o.ref)}</span>`:'—'}</td>
+        <td class="pe-price">${o.price?`${esc(o.price)} <small>${esc(o.currency||'')}</small>`:'—'}</td>
+        <td><button class="addbtn" title="הוסף לסל" onclick="addToCart('${payload}')">${ICON.plus}</button></td>
+      </tr>`;
+    }).join("");
+    return `<div class="pe-group">
+      <div class="pe-group-head" style="border-right:3px solid ${col[0]}">
+        <b>${esc(p.curve)}</b>
+        ${p.french?`<span class="chip">${esc(p.french)}</span>`:''}
+        ${p.length?`<span class="chip">${esc(p.length)}</span>`:''}
+        <span class="pe-alts">${p.options.length} חלופות</span>
+      </div>
+      <div style="overflow-x:auto"><table class="pe-table">
+        <thead><tr><th>תיאור פריט</th><th>מק"ט שיבא</th><th>מק"ט יצרן</th><th>מחיר</th><th>סל</th></tr></thead>
+        <tbody>${rows}</tbody></table></div>
+    </div>`;
+  }).join("");
+
+  m.innerHTML = head + `
+    <div class="pe-info">
+      <span class="pe-info-ic">${ICON.cath}</span>
+      <div><b>${items.length} פריטי ציוד</b> מתאימים ל-${esc(pr.name)} — כל פריט עם כל החלופות שוות-הערך מהספקים, כולל מק"ט שיבא, מק"ט יצרן ומחיר. הוסיפי לסל ושגרי הזמנה בוואטסאפ.</div>
+    </div>
+    ${items.length? groups : emptyHTML()}
+    <div class="disclaimer" style="margin-top:18px"><span class="di">${infoIcon()}</span>
+      <div><b>הבהרה:</b> שיוך הציוד לפרוצדורה הוא ייחוס קליני כללי להמחשת המבנה. המק"טים, הספקים והמחירים הם נתוני שיבא אמיתיים מהקטלוג. אין באמור תחליף לשיקול דעת קליני או להוראות היצרן (IFU).</div></div>`;
 }
 
 // ===== CATALOG =====
