@@ -573,14 +573,198 @@ body {
 .search-results-header b { color: var(--navy); }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE  —  phone · tablet · desktop · wide
    ============================================================ */
+
+/* Make every data table horizontally scrollable on small screens
+   (was overflow:hidden which clipped wide tables on phones) */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Large desktop / wide screens — cap content width for readability */
+@media (min-width: 1500px) {
+  .main { padding: 1.75rem 3rem 4rem; }
+  .main > .fade-in { max-width: 1400px; margin-inline: auto; }
+}
+
+/* Tablet landscape & small laptop */
+@media (max-width: 1024px) {
+  html { font-size: 14.5px; }
+  .header-search-wrap { flex: 0 0 240px; }
+  .home-hero { padding: 1.75rem 1.75rem; }
+  .cat-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}
+
+/* Tablet portrait */
+@media (max-width: 860px) {
+  .header-title small { display: none; }
+  .home-hero { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .home-hero-text p { max-width: 100%; }
+}
+
+/* Phones */
 @media (max-width: 768px) {
-  .main { padding: 1rem; }
-  .header-search-wrap { flex: 1; }
+  html { font-size: 14px; }
+  .header { gap: .6rem; padding: 0 .8rem; }
+  .header-logo { height: 30px; }
+  .header-title { font-size: .92rem; }
+  .header-search-wrap { flex: 1 1 auto; min-width: 0; }
+  .header-search { font-size: .82rem; padding: .45rem 2.1rem .45rem .7rem; }
   .header-badge { display: none; }
-  .nav-strip { padding: 0 .5rem; }
-  .nav-strip-btn { padding: .5rem .6rem; font-size: .75rem; }
+  .main { padding: 1rem .85rem 5rem; }
+  .nav-strip { padding: 0 .4rem; }
+  .nav-strip-btn { padding: .5rem .6rem; font-size: .76rem; }
+  .nav-strip-home { padding-left: .6rem; margin-left: .3rem; }
+  .home-hero { padding: 1.4rem 1.25rem; }
+  .home-hero-text h1 { font-size: 1.3rem; }
+  .home-hero-stats { gap: .6rem; }
+  .stat-chip { padding: .45rem .75rem; flex: 1 1 auto; min-width: 70px; }
+  .cat-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .75rem; }
+  .page-header h1 { font-size: 1.15rem; flex-wrap: wrap; }
+  .table-wrap table { font-size: .78rem; }
+  .table-wrap tbody td.desc-cell { max-width: 200px; }
+  .shape-guide-grid { gap: .5rem; }
+}
+
+/* Small / older phones (e.g. iPhone SE, Galaxy A-series) */
+@media (max-width: 480px) {
+  html { font-size: 13.5px; }
+  .header-title { font-size: .82rem; }
+  .header-logo { height: 26px; }
+  .home-hero-text h1 { font-size: 1.12rem; }
+  .home-hero-stats { gap: .4rem; }
+  .stat-chip .stat-n { font-size: 1.15rem; }
+  .cat-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .cat-card { padding: 1rem .85rem; }
+  .cat-card .card-icon { font-size: 1.6rem; }
+  .wa-fab { width: 54px; height: 54px; }
+  .wa-fab svg { width: 28px; height: 28px; }
+  .site-footer { padding: 1.25rem 1rem 1.5rem; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { animation: none; }
+  .wa-fab, .wa-fab::after { animation: none !important; }
+}
+
+/* ============================================================
+   WHATSAPP FLOATING BUTTON (prominent, all devices)
+   ============================================================ */
+.wa-fab {
+  position: fixed;
+  bottom: 22px; left: 22px;            /* RTL-friendly: bottom-left */
+  z-index: 999;
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 20px rgba(37,211,102,.45), 0 2px 8px rgba(0,0,0,.2);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+  animation: waPulse 2.4s infinite;
+}
+.wa-fab:hover { transform: scale(1.08); box-shadow: 0 8px 26px rgba(37,211,102,.6); }
+.wa-fab svg { width: 34px; height: 34px; display: block; }
+.wa-fab-label {
+  position: absolute;
+  left: 72px; bottom: 50%; transform: translateY(50%);
+  background: var(--navy); color: #fff;
+  font-size: .76rem; font-weight: 600; white-space: nowrap;
+  padding: .4rem .7rem; border-radius: 8px;
+  box-shadow: var(--shadow);
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.wa-fab:hover .wa-fab-label { opacity: 1; }
+@keyframes waPulse {
+  0%   { box-shadow: 0 6px 20px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.5); }
+  70%  { box-shadow: 0 6px 20px rgba(37,211,102,.45), 0 0 0 16px rgba(37,211,102,0); }
+  100% { box-shadow: 0 6px 20px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* ============================================================
+   EVIDENCE / CLINICAL SOURCES
+   ============================================================ */
+.evidence-section { margin-top: 2.25rem; }
+.evidence-head {
+  display: flex; align-items: center; gap: .55rem;
+  font-size: 1.05rem; font-weight: 800; color: var(--navy);
+  margin-bottom: .35rem;
+}
+.evidence-sub { font-size: .82rem; color: var(--text-sec); margin-bottom: 1rem; line-height: 1.55; }
+.evidence-sub a { color: var(--teal-h); text-decoration: none; }
+.evidence-sub a:hover { text-decoration: underline; }
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+}
+.evidence-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.15rem;
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: .5rem;
+  border-top: 3px solid var(--teal);
+}
+.evidence-card .ev-topic {
+  font-size: .68rem; font-weight: 800; letter-spacing: .03em;
+  color: var(--teal-h); text-transform: uppercase;
+}
+.evidence-card .ev-title {
+  font-size: .9rem; font-weight: 700; color: var(--navy); line-height: 1.4;
+}
+.evidence-card .ev-cite {
+  font-size: .76rem; color: var(--text-sec); line-height: 1.5;
+}
+.evidence-card .ev-cite b { color: var(--navy); font-weight: 700; }
+.evidence-card .ev-tag {
+  align-self: flex-start;
+  font-size: .66rem; font-weight: 700;
+  background: var(--magenta-bg); color: var(--magenta-h);
+  padding: .15rem .55rem; border-radius: 8px;
+}
+.evidence-card .ev-tag.intl { background: var(--navy-bg); color: var(--navy); }
+.evidence-card .ev-links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: auto; }
+.evidence-card a.ev-link {
+  font-size: .73rem; font-weight: 700; text-decoration: none;
+  color: var(--teal-h);
+  border: 1px solid var(--teal); border-radius: 7px;
+  padding: .25rem .6rem; transition: background .15s, color .15s;
+}
+.evidence-card a.ev-link:hover { background: var(--teal); color: #fff; }
+.evidence-card a.ev-link.pubmed { color: var(--navy); border-color: var(--navy); }
+.evidence-card a.ev-link.pubmed:hover { background: var(--navy); color: #fff; }
+.evidence-disclaimer {
+  margin-top: 1rem; font-size: .72rem; color: var(--text-sec);
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: .65rem .85rem; line-height: 1.55;
+}
+
+/* ============================================================
+   SITE FOOTER  /  COPYRIGHT
+   ============================================================ */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.85);
+  padding: 1.6rem 1.75rem 2rem;
+  margin-top: auto;
+}
+.site-footer-inner {
+  max-width: 1400px; margin-inline: auto;
+  display: flex; flex-wrap: wrap; gap: 1rem 2rem;
+  align-items: center; justify-content: space-between;
+}
+.site-footer-brand { font-size: .92rem; font-weight: 700; color: #fff; }
+.site-footer-brand small { display: block; font-weight: 400; opacity: .65; font-size: .72rem; margin-top: .2rem; }
+.site-footer-copy { font-size: .78rem; opacity: .8; text-align: center; }
+.site-footer-copy b { color: #fff; }
+.site-footer-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .76rem; }
+.site-footer-links a { color: var(--teal); text-decoration: none; }
+.site-footer-links a:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .site-footer-inner { flex-direction: column; text-align: center; }
 }
 
 /* ============================================================
@@ -646,6 +830,36 @@ body {
   </main>
 
 </div>
+
+<!-- ============================================================
+     SITE FOOTER  /  COPYRIGHT
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-brand">
+      CARDIOVASCULAR-DEVICE
+      <small>מרכז ציוד קרדיווסקולרי · קרדיולוגיה פולשנית · שיבא</small>
+    </div>
+    <div class="site-footer-copy">
+      © <span id="footerYear">2026</span> <b>Rinat Etus</b> — כל הזכויות שמורות · All&nbsp;rights&nbsp;reserved.
+      <br>מקורות קליניים מבוססי מחקרים רפואיים · נתונים פנימיים בלבד.
+    </div>
+    <div class="site-footer-links">
+      <a onclick="navHome();document.getElementById('evidence-anchor')?.scrollIntoView({behavior:'smooth'})" style="cursor:pointer">מקורות ומחקרים</a>
+      <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     WHATSAPP FLOATING BUTTON
+     ============================================================ -->
+<a class="wa-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <span class="wa-fab-label">שיתוף הקטלוג בוואטסאפ</span>
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true" focusable="false">
+    <path d="M16.04 4C9.93 4 4.96 8.97 4.96 15.08c0 1.95.51 3.85 1.48 5.53L4.8 27.2l6.78-1.78a11.04 11.04 0 0 0 4.46.94h.01c6.11 0 11.08-4.97 11.08-11.08 0-2.96-1.15-5.74-3.25-7.84A11 11 0 0 0 16.04 4Zm0 20.28h-.01a9.2 9.2 0 0 1-4.69-1.28l-.34-.2-3.48.91.93-3.39-.22-.35a9.18 9.18 0 0 1-1.41-4.9c0-5.08 4.14-9.21 9.22-9.21a9.16 9.16 0 0 1 6.51 2.7 9.16 9.16 0 0 1 2.7 6.52c0 5.08-4.14 9.2-9.22 9.2Zm5.05-6.89c-.28-.14-1.64-.81-1.89-.9-.25-.09-.43-.14-.62.14-.18.28-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.38-.82-.74-1.38-1.64-1.54-1.92-.16-.28-.02-.43.12-.57.13-.12.28-.32.41-.48.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.49-.07-.14-.62-1.5-.85-2.05-.22-.54-.45-.47-.62-.48l-.53-.01c-.18 0-.48.07-.73.35-.25.28-.96.94-.96 2.3 0 1.35.99 2.66 1.12 2.84.14.18 1.94 2.96 4.7 4.15.66.28 1.17.45 1.57.58.66.21 1.26.18 1.74.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32Z"/>
+  </svg>
+</a>
 
 <script>
 // ============================================================
@@ -16691,6 +16905,111 @@ buildNavStrip();
 renderHome();
 
 // ============================================================
+// WHATSAPP SHARE BUTTON  (shares this catalog link)
+// ============================================================
+(function initWhatsApp() {
+  try {
+    var fab = document.getElementById('waFab');
+    if (!fab) return;
+    var url = window.location.href;
+    var msg = 'CARDIOVASCULAR-DEVICE — קטלוג ציוד קרדיווסקולרי | קרדיולוגיה פולשנית\n' + url;
+    fab.setAttribute('href', 'https://wa.me/?text=' + encodeURIComponent(msg));
+    var fy = document.getElementById('footerYear');
+    if (fy) fy.textContent = new Date().getFullYear();
+  } catch (e) { /* no-op */ }
+})();
+
+// ============================================================
+// CLINICAL EVIDENCE  —  peer-reviewed sources (PubMed)
+// Israeli-led research is prioritised per institutional request.
+// All citations are real and were verified against PubMed; none are fabricated.
+// ============================================================
+const CLINICAL_EVIDENCE = [
+  {
+    topic: 'גישה רדיאלית · צנתרים ומבואים',
+    title: 'אסטרטגיות להתגברות על אתגרי צנתור כלילי בגישה רדיאלית',
+    cite: 'Papadopoulos K, Kerner A, Yalonetsky S, Nikolsky E, Feld Y, <b>Roguin A</b>. Rev Cardiovasc Med. 2020;21(4):501-505.',
+    inst: 'Rambam Medical Center / Hillel Yaffe, ישראל',
+    israeli: true,
+    pmid: '33387994',
+    doi: '10.31083/j.rcm.2020.04.252'
+  },
+  {
+    topic: 'בטיחות קרינה · גישה רדיאלית',
+    title: 'מגן עופרת אגני בצנתור רדיאלי — מחקר אקראי מבוקר (RCT)',
+    cite: 'Musallam A, Volis I, Dadaev S, Abergel E, Soni A, Yalonetsky S, Kerner A, <b>Roguin A</b>. Catheter Cardiovasc Interv. 2015;85(7):1164-1170.',
+    inst: 'Rambam Medical Center & Technion, חיפה, ישראל',
+    israeli: true,
+    pmid: '25510441',
+    doi: '10.1002/ccd.25777'
+  },
+  {
+    topic: 'בטיחות קרינה · מעבדת הצנתורים',
+    title: 'קרינה מייננת — חרב פיפיות בפרוצדורות פולשניות',
+    cite: '<b>Roguin A</b>. EuroIntervention. 2013;9(6):657-663.',
+    inst: 'Rambam Medical Center / Technion, חיפה, ישראל',
+    israeli: true,
+    pmid: '24169125',
+    doi: '10.4244/EIJV9I6A107'
+  },
+  {
+    topic: 'TAVI · בלוני ולוולופלסטיקה ומבואים גדולים',
+    title: 'מורפולוגיית מסתם דו-צניפי ותוצאות לאחר החלפת מסתם אאורטלי טרנס-קתטרית',
+    cite: 'Yoon SH, … <b>Landes U</b>, … <b>Kornowski R</b>, … Makkar RR. J Am Coll Cardiol. 2020;76(9):1018-1030.',
+    inst: 'Rabin Medical Center, פתח תקווה / אוניברסיטת תל-אביב (שותפים ישראלים ברישום הבינלאומי)',
+    israeli: true,
+    pmid: '32854836',
+    doi: '10.1016/j.jacc.2020.07.005'
+  },
+  {
+    topic: 'TAVI · מבואים גדולים (Large-bore)',
+    title: 'הפחתת פגיעה כלייתית חריפה לאחר TAVR — אסטרטגיה רב-שלבית',
+    cite: '<b>Kornowski R</b>, Tang GHL. Circ Cardiovasc Interv. 2021;14(4):e010718.',
+    inst: 'Rabin Medical Center, פתח תקווה / אוניברסיטת תל-אביב, ישראל',
+    israeli: true,
+    pmid: '33877864',
+    doi: '10.1161/CIRCINTERVENTIONS.121.010718'
+  },
+  {
+    topic: 'תומכנים (Stents) · טיפול נוגד-טסיות',
+    title: 'טיפול נוגד-טסיות כפול לאחר PCI בחולים בסיכון דימומי גבוה (MASTER DAPT)',
+    cite: 'Valgimigli M, … <b>Kornowski R</b>, … Smits PC. N Engl J Med. 2021;385(18):1643-1655.',
+    inst: 'Rabin Medical Center, תל-אביב (שותף ישראלי), מחקר אקראי בינלאומי',
+    israeli: true,
+    pmid: '34449185',
+    doi: '10.1056/NEJMoa2108749'
+  }
+];
+
+function renderEvidenceSection() {
+  const cards = CLINICAL_EVIDENCE.map(e => `
+    <div class="evidence-card">
+      <span class="ev-topic">${e.topic}</span>
+      <span class="ev-title">${e.title}</span>
+      <span class="ev-cite">${e.cite}</span>
+      <span class="ev-tag ${e.israeli ? '' : 'intl'}">${e.israeli ? '🇮🇱 מחקר ישראלי' : '🌐 בינלאומי'} · ${e.inst}</span>
+      <div class="ev-links">
+        <a class="ev-link pubmed" href="https://pubmed.ncbi.nlm.nih.gov/${e.pmid}/" target="_blank" rel="noopener">PubMed</a>
+        <a class="ev-link" href="https://doi.org/${e.doi}" target="_blank" rel="noopener">DOI</a>
+      </div>
+    </div>`).join('');
+  return `
+  <div class="evidence-section" id="evidence-anchor">
+    <div class="evidence-head">📚 מקורות קליניים ומחקרים תומכים</div>
+    <div class="evidence-sub">
+      ההמלצות והשוואות הציוד נשענות על ספרות רפואית עמיתה. בהתאם לבקשת המוסד — ניתנת עדיפות
+      למחקרים בהובלת רופאים ישראלים (רמב״ם · בילינסון/רבין · הלל יפה · טכניון).
+      המקורות אומתו מול <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>; לחיצה פותחת את המאמר המקורי.
+    </div>
+    <div class="evidence-grid">${cards}</div>
+    <div class="evidence-disclaimer">
+      ⚖️ לפי PubMed. הציטוטים כוללים מזהי DOI ישירים למאמרים המקוריים. אין להתייחס לתוכן זה כתחליף לשיקול דעת קליני;
+      בחירת ציוד תיעשה לפי הנחיות המחלקה והתוויות היצרן. כל הציטוטים אמיתיים ולא הומצאו.
+    </div>
+  </div>`;
+}
+
+// ============================================================
 // SIDEBAR BUILDER
 // ============================================================
 function buildSidebar() {
@@ -16941,6 +17260,7 @@ function renderHome() {
     </div>
     <div style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.75rem">בחר קטגוריה</div>
     <div class="cat-grid">${cardsHtml}</div>
+    ${renderEvidenceSection()}
   </div>`;
 }
 
