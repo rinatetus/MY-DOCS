@@ -331,6 +331,24 @@ footer a{color:var(--teal-soft);font-weight:600;}
   padding:4px 12px;border-radius:999px;}
 .livepill::first-letter{color:var(--teal);}
 .tile.feat{border-top:3px solid var(--teal);}
+/* per-item color accents */
+.tile.c-teal   {border-top:3px solid #25BA9C;}
+.tile.c-magenta{border-top:3px solid #EB3D85;}
+.tile.c-purple {border-top:3px solid #7C3AED;}
+.tile.c-blue   {border-top:3px solid #2563EB;}
+.tile.c-amber  {border-top:3px solid #F59E0B;}
+.tile.c-red    {border-top:3px solid #DC2626;}
+.tile.c-green  {border-top:3px solid #059669;}
+/* section divider headers */
+.cat-section{margin:0 0 14px;}
+.cat-section-head{display:flex;align-items:center;gap:12px;margin:28px 0 14px;}
+.cat-section-head h3{font-size:1.08rem;font-weight:800;margin:0;letter-spacing:-.2px;}
+.cat-label-devices{color:#27236D;}
+.cat-label-devices::before{content:"";display:inline-block;width:4px;height:18px;border-radius:3px;
+  background:linear-gradient(180deg,#25BA9C,#2563EB);margin-left:6px;vertical-align:middle;}
+.cat-label-procs{color:#7C3AED;}
+.cat-label-procs::before{content:"";display:inline-block;width:4px;height:18px;border-radius:3px;
+  background:linear-gradient(180deg,#DC2626,#7C3AED);margin-left:6px;vertical-align:middle;}
 .dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
 .dept-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 14px;text-align:center;
   cursor:pointer;transition:.18s;position:relative;box-shadow:var(--shadow-sm);}
@@ -609,32 +627,42 @@ function renderHome(){
   </div>
 
   <div class="sec-head"><h3>Cardiology · CathLab</h3><span class="livepill">● מחלקה פעילה</span></div>
+
+  <div class="cat-section-head cat-label-devices" style="margin-top:4px"><h3>Devices</h3></div>
   <div class="tiles">
-    <div class="tile feat" onclick="go('#/cat/cardiology/diagnostic')">
+    <div class="tile c-teal" onclick="go('#/cat/cardiology/diagnostic')">
       <span class="arrow">${ICON.arrow}</span>
-      <div class="tic" style="background:var(--grad-sig)">${ICON.cath}</div>
-      <h3>Diagnostic Catheters</h3><p>${counts.diagnostic} פרוצדורות · 5 ספקים</p>
+      <div class="tic" style="background:linear-gradient(135deg,#25BA9C,#1A8C75)">${ICON.cath}</div>
+      <h3>Diagnostic Catheters</h3><p>${counts.diagnostic} פריטים · 5 ספקים</p>
     </div>
-    <div class="tile feat" onclick="go('#/cat/cardiology/guiding')">
+    <div class="tile c-magenta" onclick="go('#/cat/cardiology/guiding')">
       <span class="arrow">${ICON.arrow}</span>
-      <div class="tic" style="background:var(--grad-warm)">${ICON.cath}</div>
-      <h3>Guiding Catheters</h3><p>${counts.guiding} פרוצדורות · 5 ספקים</p>
+      <div class="tic" style="background:linear-gradient(135deg,#EB3D85,#C02D6E)">${ICON.cath}</div>
+      <h3>Guiding Catheters</h3><p>${counts.guiding} פריטים · 5 ספקים</p>
     </div>
-    ${Object.keys(KNOWLEDGE).map(k=>`
-    <div class="tile feat" onclick="go('#/proc/${k}')">
-      <span class="arrow">${ICON.arrow}</span>
-      <div class="tic" style="background:var(--grad-cool)">${ICON.proc}</div>
-      <h3>${esc(KNOWLEDGE[k].code)}</h3><p>מאגר ידע + ציוד נדרש</p>
-    </div>`).join("")}
-    <div class="tile t-soon" onclick="go('#/soon/Introducer%20Sheaths')">
+    <div class="tile c-purple t-soon" onclick="go('#/soon/Introducer%20Sheaths')">
       <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
-      <div class="tic" style="background:var(--navy-soft)">${ICON.sheath}</div>
+      <div class="tic" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">${ICON.sheath}</div>
       <h3>Introducer Sheaths</h3><p>Radial · Large-bore</p>
     </div>
-    <div class="tile t-soon" onclick="go('#/soon/Guidewires')">
+    <div class="tile c-blue t-soon" onclick="go('#/soon/Guidewires')">
       <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
-      <div class="tic" style="background:var(--navy-soft)">${ICON.wire}</div>
+      <div class="tic" style="background:linear-gradient(135deg,#2563EB,#1D4ED8)">${ICON.wire}</div>
       <h3>Guidewires</h3><p>Coronary · Support</p>
+    </div>
+  </div>
+
+  <div class="cat-section-head cat-label-procs"><h3>Procedures</h3></div>
+  <div class="tiles">
+    <div class="tile c-red" onclick="go('#/proc/tavi')">
+      <span class="arrow">${ICON.arrow}</span>
+      <div class="tic" style="background:linear-gradient(135deg,#DC2626,#991B1B)">${ICON.proc}</div>
+      <h3>TAVI</h3><p>Transcatheter Aortic Valve Implantation</p>
+    </div>
+    <div class="tile c-green" onclick="go('#/proc/carotid')">
+      <span class="arrow">${ICON.arrow}</span>
+      <div class="tic" style="background:linear-gradient(135deg,#059669,#047857)">${ICON.proc}</div>
+      <h3>Carotid (CAS)</h3><p>Carotid Artery Stenting</p>
     </div>
   </div>
 
@@ -659,21 +687,61 @@ function renderDept(id){
   const m = document.getElementById("main");
   m.innerHTML = `
     <div class="crumbs"><a onclick="go('#/home')">דף הבית</a> ${ICON.chevS()} <b>Cardiology · CathLab</b></div>
-    <div class="page-head"><h1>Cardiology · CathLab</h1>
-      <p class="lead">המחלקה הפעילה. בחרי קטגוריית ציוד או פרוצדורה. סך הכול ${DATA.length} פרוצדורות מושוות בין 5 ספקים.</p></div>
+    <div class="page-head">
+      <h1>Cardiology · CathLab</h1>
+      <p class="lead">המחלקה הפעילה. בחרי קטגוריית ציוד (Devices) או פרוצדורה. סך הכול ${DATA.length} פריטים מושווים בין 5 ספקים.</p>
+    </div>
+
+    <!-- DEVICES SECTION -->
+    <div class="cat-section-head cat-label-devices"><h3>Devices</h3><span style="font-size:.78rem;color:var(--muted);font-weight:600">ציוד · CathLab</span></div>
     <div class="tiles">
-      <div class="tile feat" onclick="go('#/cat/cardiology/diagnostic')"><span class="arrow">${ICON.arrow}</span>
-        <div class="tic" style="background:var(--grad-sig)">${ICON.cath}</div><h3>Diagnostic Catheters</h3><p>${counts.diagnostic} פרוצדורות</p></div>
-      <div class="tile feat" onclick="go('#/cat/cardiology/guiding')"><span class="arrow">${ICON.arrow}</span>
-        <div class="tic" style="background:var(--grad-warm)">${ICON.cath}</div><h3>Guiding Catheters</h3><p>${counts.guiding} פרוצדורות</p></div>
-      ${Object.keys(KNOWLEDGE).map(k=>`<div class="tile feat" onclick="go('#/proc/${k}')"><span class="arrow">${ICON.arrow}</span>
-        <div class="tic" style="background:var(--grad-cool)">${ICON.proc}</div><h3>${esc(KNOWLEDGE[k].code)}</h3><p>ידע + ציוד</p></div>`).join("")}
-      <div class="tile t-soon" onclick="go('#/soon/Introducer%20Sheaths')"><span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
-        <div class="tic" style="background:var(--navy-soft)">${ICON.sheath}</div><h3>Introducer Sheaths</h3><p>Radial · Large-bore</p></div>
-      <div class="tile t-soon" onclick="go('#/soon/Guidewires')"><span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
-        <div class="tic" style="background:var(--navy-soft)">${ICON.wire}</div><h3>Guidewires</h3><p>Coronary · Support</p></div>
-      <div class="tile t-soon" onclick="go('#/soon/Microcatheters')"><span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
-        <div class="tic" style="background:var(--navy-soft)">${ICON.micro}</div><h3>Microcatheters</h3><p>Microintroducers</p></div>
+      <div class="tile c-teal" onclick="go('#/cat/cardiology/diagnostic')">
+        <span class="arrow">${ICON.arrow}</span>
+        <div class="tic" style="background:linear-gradient(135deg,#25BA9C,#1A8C75)">${ICON.cath}</div>
+        <h3>Diagnostic Catheters</h3>
+        <p>${counts.diagnostic} פריטים · 5 ספקים</p>
+      </div>
+      <div class="tile c-magenta" onclick="go('#/cat/cardiology/guiding')">
+        <span class="arrow">${ICON.arrow}</span>
+        <div class="tic" style="background:linear-gradient(135deg,#EB3D85,#C02D6E)">${ICON.cath}</div>
+        <h3>Guiding Catheters</h3>
+        <p>${counts.guiding} פריטים · 5 ספקים</p>
+      </div>
+      <div class="tile c-purple t-soon" onclick="go('#/soon/Introducer%20Sheaths')">
+        <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
+        <div class="tic" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">${ICON.sheath}</div>
+        <h3>Introducer Sheaths</h3>
+        <p>Radial · Large-bore</p>
+      </div>
+      <div class="tile c-blue t-soon" onclick="go('#/soon/Guidewires')">
+        <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
+        <div class="tic" style="background:linear-gradient(135deg,#2563EB,#1D4ED8)">${ICON.wire}</div>
+        <h3>Guidewires</h3>
+        <p>Coronary · Support</p>
+      </div>
+      <div class="tile c-amber t-soon" onclick="go('#/soon/Microcatheters')">
+        <span class="soon" style="position:absolute;left:18px;top:18px">בקרוב</span>
+        <div class="tic" style="background:linear-gradient(135deg,#F59E0B,#D97706)">${ICON.micro}</div>
+        <h3>Microcatheters</h3>
+        <p>Microintroducers</p>
+      </div>
+    </div>
+
+    <!-- PROCEDURES SECTION -->
+    <div class="cat-section-head cat-label-procs"><h3>Procedures</h3><span style="font-size:.78rem;color:var(--muted);font-weight:600">מאגר ידע קליני + ציוד נדרש</span></div>
+    <div class="tiles">
+      <div class="tile c-red" onclick="go('#/proc/tavi')">
+        <span class="arrow">${ICON.arrow}</span>
+        <div class="tic" style="background:linear-gradient(135deg,#DC2626,#991B1B)">${ICON.proc}</div>
+        <h3>TAVI</h3>
+        <p>Transcatheter Aortic Valve Implantation</p>
+      </div>
+      <div class="tile c-green" onclick="go('#/proc/carotid')">
+        <span class="arrow">${ICON.arrow}</span>
+        <div class="tic" style="background:linear-gradient(135deg,#059669,#047857)">${ICON.proc}</div>
+        <h3>Carotid (CAS)</h3>
+        <p>Carotid Artery Stenting</p>
+      </div>
     </div>`;
 }
 
