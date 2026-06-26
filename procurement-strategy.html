@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מערכות רכש רפואי — ניתוח אסטרטגי ומיצוב | Rinat Etus</title>
+<style>
+:root{
+  --magenta:#EB3D85; --magenta-bg:#FDECF3; --magenta-h:#C83471;
+  --teal:#25BA9C; --teal-bg:#E9F8F5; --teal-h:#1F9E85;
+  --navy:#27236D; --navy-bg:#E9E9F0; --navy-h:#211E5D;
+  --bg:#F7F8FA; --white:#fff; --border:#E6E7EC; --text:#27236D; --text-sec:#6B6B7B;
+  --grad:linear-gradient(135deg,#27236D 0%,#25BA9C 100%);
+  --grad-sig:linear-gradient(135deg,#25BA9C 0%,#EB3D85 100%);
+  --radius:12px; --shadow:0 2px 14px rgba(39,35,109,.08); --shadow-lg:0 6px 28px rgba(39,35,109,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:'Segoe UI','Arial',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.1rem}
+
+/* HERO */
+.hero{background:var(--grad);color:#fff;padding:2.6rem 0 2.2rem}
+.hero .wrap{display:flex;flex-direction:column;gap:.5rem}
+.hero .eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;font-weight:700}
+.hero h1{font-size:1.85rem;font-weight:800;line-height:1.25}
+.hero p{font-size:1rem;opacity:.9;max-width:760px;margin-top:.4rem}
+.hero .meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.hero .chip{background:rgba(255,255,255,.16);border-radius:20px;padding:.3rem .85rem;font-size:.78rem;font-weight:600}
+
+/* SECTIONS */
+section{padding:2.1rem 0;border-bottom:1px solid var(--border)}
+.kicker{display:inline-flex;align-items:center;gap:.45rem;font-size:.72rem;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--teal-h);background:var(--teal-bg);padding:.25rem .7rem;border-radius:8px;margin-bottom:.7rem}
+h2{font-size:1.32rem;font-weight:800;color:var(--navy);margin-bottom:.6rem}
+h2 .n{color:var(--teal)}
+p.lead{font-size:1.02rem;color:var(--text)}
+.callout{background:var(--white);border:1.5px solid var(--border);border-right:4px solid var(--magenta);
+  border-radius:10px;padding:1rem 1.15rem;margin:1rem 0;box-shadow:var(--shadow);font-size:1rem}
+.callout b{color:var(--magenta-h)}
+.muted{color:var(--text-sec);font-size:.92rem}
+
+/* TABLE */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);
+  box-shadow:var(--shadow);border:1px solid var(--border);background:var(--white);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.84rem;min-width:780px}
+thead tr{background:var(--navy);color:#fff}
+th{padding:.7rem .7rem;text-align:center;font-weight:600;font-size:.78rem;white-space:nowrap}
+th.l,td.l{text-align:right}
+tbody td{padding:.6rem .7rem;text-align:center;vertical-align:middle;border-bottom:1px solid var(--border)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--teal-bg)}
+tr.mine td{background:var(--magenta-bg);font-weight:600}
+tr.mine:hover td{background:#fbdcea}
+.sys{font-weight:700;color:var(--navy);text-align:right;white-space:nowrap}
+.yes{color:var(--teal-h);font-weight:800}.part{color:#E08600;font-weight:700}.no{color:#C62828;font-weight:700}
+.legend{font-size:.78rem;color:var(--text-sec);margin-top:.55rem}
+
+/* CARDS / SWOT */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.6rem}
+.swot{border-radius:10px;padding:1rem 1.1rem;box-shadow:var(--shadow);border:1.5px solid var(--border)}
+.swot h3{font-size:.95rem;font-weight:800;margin-bottom:.45rem;display:flex;align-items:center;gap:.4rem}
+.swot.s{background:var(--teal-bg);border-color:#bfe9df}.swot.s h3{color:var(--teal-h)}
+.swot.w{background:#FFF4F4;border-color:#f3d2d2}.swot.w h3{color:#C62828}
+.swot.o{background:var(--navy-bg);border-color:#d2d2e0}.swot.o h3{color:var(--navy)}
+.swot.t{background:#FFF8E8;border-color:#f0e0b8}.swot.t h3{color:#9a7400}
+.swot ul{list-style:none;font-size:.86rem}
+.swot li{padding:.18rem 0 .18rem 0;padding-right:1.1rem;position:relative}
+.swot li::before{content:"•";position:absolute;right:0;font-weight:800;opacity:.6}
+
+/* TWIN PRODUCTS */
+.twins{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.6rem}
+.twin{background:var(--white);border:1.5px solid var(--border);border-top:3px solid var(--teal);
+  border-radius:10px;padding:1.05rem 1.1rem;box-shadow:var(--shadow)}
+.twin .flag{font-size:.72rem;font-weight:700;color:var(--text-sec)}
+.twin h4{font-size:1.02rem;color:var(--navy);margin:.2rem 0 .35rem}
+.twin p{font-size:.88rem;color:var(--text-sec)}
+.twin a{display:inline-block;margin-top:.6rem;font-size:.82rem;font-weight:700;color:var(--teal-h);
+  text-decoration:none;border:1px solid var(--teal);border-radius:8px;padding:.3rem .7rem;transition:.15s}
+.twin a:hover{background:var(--teal);color:#fff}
+
+/* STEPS */
+ol.steps{counter-reset:s;list-style:none;margin-top:.5rem}
+ol.steps li{counter-increment:s;position:relative;padding:.55rem 3rem .55rem 0;font-size:.96rem;border-bottom:1px dashed var(--border)}
+ol.steps li:last-child{border-bottom:none}
+ol.steps li::before{content:counter(s);position:absolute;right:0;top:.5rem;width:1.7rem;height:1.7rem;
+  background:var(--grad-sig);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem}
+ol.steps b{color:var(--navy)}
+
+/* SOURCES + FOOTER */
+.sources{font-size:.82rem;color:var(--text-sec);line-height:2}
+.sources a{color:var(--teal-h);text-decoration:none}.sources a:hover{text-decoration:underline}
+footer{background:var(--navy);color:rgba(255,255,255,.85);padding:1.6rem 0 2rem;text-align:center}
+footer b{color:#fff}
+footer .copy{font-size:.85rem}
+footer .sub{font-size:.74rem;opacity:.65;margin-top:.35rem}
+
+@media (max-width:720px){
+  html{font-size:15px}
+  .hero h1{font-size:1.45rem}
+  .grid2,.twins{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">מסמך מנהלים · ניתוח אסטרטגי</span>
+    <h1>מערכות רכש רפואי חדשניות — מיצוב המוצר ופריצה לשוק</h1>
+    <p>היכן עומדת שכבת האינטליגנציה הרכשית-קלינית למעבדת הצנתורים, מול מערכות ה-ERP הממשלתיות ופלטפורמות ה-Value-Analysis בעולם — והדרך לאימוץ מוסדי בשיבא.</p>
+    <div class="meta">
+      <span class="chip">🏥 Leviev Heart Center · Sheba</span>
+      <span class="chip">📊 השוואת שוק</span>
+      <span class="chip">🧭 SWOT + מיצוב</span>
+      <span class="chip">© Rinat Etus</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">1 · התזה</span>
+    <h2>לאן זה חותר</h2>
+    <p class="lead">המוצר אינו "קטלוג" — הוא <b>שכבת אינטליגנציה רכשית-קלינית</b> (Clinical Procurement Intelligence) שמחברת ארבעה עולמות שמנותקים היום בשיבא:</p>
+    <div class="callout">
+      <b>פריט</b> ← ההתוויה הקלינית שלו ← העלות (מול מכרז/ספקים) ← מלאי Min/Max ← הראיה המדעית.
+    </div>
+    <p class="muted">המסר להנהלה: <b>תקנון (סטנדרטיזציה) שמייצר חיסכון</b> — איתור מהיר של הפריט הזול השווה-קלינית, שקיפות מחיר, צמצום פג-תוקף ווריאציה מיותרת בין רופאים, ומינוף יד במו"מ מול ספקים. הבעיה: שיבא לא <i>קנתה</i> את היכולת הזו — היא <i>נבנתה</i> פנימית.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">2 · מפת השוק</span>
+    <h2>טבלת השוואה — מערכות רכש לארגון רפואי</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th class="l">מערכת</th><th>סוג</th><th>מקור</th>
+            <th>ראיה קלינית</th><th>שקיפות מחיר</th><th>קטלוג / Item-Master</th>
+            <th>רמת מחלקה</th><th>בישראל</th><th>עלות/מורכבות</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="sys">נמר / מזור (SAP)</td><td>ERP ממשלתי</td><td>🇮🇱</td><td class="no">—</td><td class="part">חלקי</td><td class="yes">✓ מק"ט מזור</td><td class="no">ניהולי</td><td class="yes">פרוס</td><td>גבוהה מאוד</td></tr>
+          <tr><td class="sys">SAP Ariba (AI · Joule)</td><td>Source-to-Pay</td><td>🌐</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="part">בינוני</td><td class="part">דרך SAP</td><td>גבוהה</td></tr>
+          <tr><td class="sys">Coupa</td><td>Spend Mgmt</td><td>🇺🇸</td><td class="no">—</td><td class="yes">✓ predictive</td><td class="yes">✓</td><td class="part">בינוני</td><td class="no">—</td><td>גבוהה</td></tr>
+          <tr><td class="sys">GHX Exchange</td><td>רשת רכש בריאות</td><td>🇺🇸</td><td class="part">חלקי</td><td class="yes">✓</td><td class="yes">✓ ענק</td><td class="part">בינוני</td><td class="no">—</td><td>גבוהה</td></tr>
+          <tr><td class="sys">GHX Lumere ⭐</td><td>Value-Analysis קליני</td><td>🇺🇸</td><td class="yes">✓✓ ליבה</td><td class="yes">✓ עלות↔תוצאה</td><td class="yes">✓</td><td class="yes">✓ per-physician</td><td class="no">—</td><td>גבוהה</td></tr>
+          <tr><td class="sys">Prodigo Marketplace ⭐</td><td>קטלוג / Item-Master</td><td>🇺🇸</td><td class="no">—</td><td class="yes">✓ "right price"</td><td class="yes">✓✓ 11M פריטים</td><td class="yes">✓</td><td class="no">—</td><td>בינונית-גבוהה</td></tr>
+          <tr><td class="sys">WaveMark / QSight / LogiTag</td><td>מלאי RFID נק' שימוש</td><td>🇺🇸/🇮🇱</td><td class="no">—</td><td class="part">חלקי</td><td class="part">חלקי</td><td class="yes">✓✓ cath-lab</td><td class="part">נקודתי</td><td>חומרה יקרה</td></tr>
+          <tr class="mine"><td class="sys">🟣 המוצר שלך</td><td>קטלוג+מחיר+ראיה (מחלקתי)</td><td>🇮🇱 שיבא</td><td class="yes">✓ KOLs ישראלים</td><td class="yes">✓ מכרז+חיסכון</td><td class="yes">✓ קרדיו</td><td class="yes">✓✓ עברית/RTL</td><td class="yes">✓ בנוי</td><td>נמוכה מאוד</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">⭐ = התאומים הקרובים ביותר למוצר שלך · <span class="yes">✓</span> קיים · <span class="part">חלקי</span> · <span class="no">—</span> חסר</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">3 · המצב הקיים</span>
+    <h2>כן — יש מערכת רכש ממשלתית בארגונים רפואיים</h2>
+    <p class="lead">בתי החולים הממשלתיים רצים על <b>מערכת "נמר"</b> (ניהול מרכזים רפואיים) מבוססת SAP, ועליה פרויקט <b>"מזור"</b> ללוגיסטיקה/רכש/כספים. שיבא מריצה גם את <b>"תפנית" של Matrix</b>.</p>
+    <div class="callout">
+      ה-<b>מק"ט מזור</b> שכבר קיים בקטלוג שלך הוא ה-SKU של המערכת הממשלתית הזו — כלומר יש לך כבר את <b>גשר האינטגרציה</b>.
+    </div>
+    <p class="muted">מה ש-מזור <i>לא</i> נותן: השכבה הקלינית בנקודת השימוש — איזה פריט לאיזו פעולה, מה השווה-ערך הזול, ומה אומרת הראיה. <b>שם הפער שלך.</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">4 · הגל הבא</span>
+    <h2>ה-"Game Changer": רכש אג'נטי מבוסס-AI</h2>
+    <p class="lead">2026 מביאה <b>רכש אוטונומי מבוסס-AI</b>: SAP השיקה את Next-Gen Ariba עם עוזר ה-AI <b>Joule</b> מוטמע בתהליך; JAGGAER מקדמת "Autonomous Commerce"; GHX מטמיעה AI לצמצום שגיאות. הכיוון: לשאול בשפה טבעית <i>"מה הצנתר הזול ביותר השווה-קלינית ל-X?"</i> ולקבל תשובה מנומקת. <b>זה הכיוון שאליו חייבים לקחת את המוצר</b> כדי שלא יתיישן.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">5 · מיצוב</span>
+    <h2>איפה המוצר עומד — והתאומים בעולם</h2>
+    <p class="lead">קיים מוצר כמעט-זהה בקונספט (לא אסתיר): <b>GHX Lumere</b> ו-<b>Prodigo Marketplace</b>. שניהם 🇺🇸, יקרים, אנגלית, כלל-בית-חולים, ולא מחוברים למכרז/מק"ט-מזור הישראלי. <b>אין מקבילה ישראלית, מחלקתית, בעברית, קרדיולוגית-ייעודית</b> — זה האי-בידול שלך.</p>
+    <div class="twins">
+      <div class="twin">
+        <div class="flag">🇺🇸 התאום הקרוב #1 · Value-Analysis קליני</div>
+        <h4>GHX Lumere</h4>
+        <p>בדיוק הרעיון: ראיה קלינית + עלות לבחירת מכשור, ניתוח ברמת רופא בודד מול קטגוריות שווה-ערך.</p>
+        <a href="https://www.ghx.com/value-analysis-providers/" target="_blank" rel="noopener">ghx.com/value-analysis-providers ↗</a>
+      </div>
+      <div class="twin">
+        <div class="flag">🇺🇸 התאום הקרוב #2 · קטלוג / Item-Master</div>
+        <h4>Prodigo Marketplace</h4>
+        <p>"הפריט הנכון, מהספק הנכון, במחיר הנכון" — קטלוג e-commerce עם 11M פריטים תחת ניהול.</p>
+        <a href="https://www.prodigosolutions.com/solutions/products/marketplace" target="_blank" rel="noopener">prodigosolutions.com/marketplace ↗</a>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:.8rem">המשמעות: את לא "ממציאה" קטגוריה — את <b>מקומית-מתאימה קטגוריה מוכחת</b>. מול הנהלה זה דווקא יתרון: סיכון נמוך, מודל מוכח.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">6 · SWOT</span>
+    <h2>ניתוח SWOT מתומצת</h2>
+    <div class="grid2">
+      <div class="swot s"><h3>S · חוזקות</h3><ul>
+        <li>בנוי וחי — לא רעיון</li><li>עברית / RTL, קרדיו-ייעודי</li>
+        <li>מחובר למכרז ול-מק"ט מזור</li><li>ראיה מ-KOLs של שיבא</li><li>עלות ~0, נגיש (WhatsApp/מובייל)</li>
+      </ul></div>
+      <div class="swot w"><h3>W · חולשות</h3><ul>
+        <li>דף סטטי, עדכון נתונים ידני</li><li>ללא אינטגרציה חיה ל-ERP/מלאי</li>
+        <li>חשש "Shadow-IT"</li><li>תלוי-אדם-בודד (קיימוּת)</li><li>ללא הגנת PHI/הרשאות · ללא IP מגן</li>
+      </ul></div>
+      <div class="swot o"><h3>O · הזדמנויות</h3><ul>
+        <li>פער קליני אמיתי ב-מזור</li><li>גל ה-AI האג'נטי</li>
+        <li>בית-חולים-ראשון → שכפול ל-IR/EP/אורתו</li><li>מינוף מכרז ומו"מ</li><li>לחץ רגולטורי לריסון עלויות</li>
+      </ul></div>
+      <div class="swot t"><h3>T · איומים</h3><ul>
+        <li>GHX/SAP יכולים "לבלוע" את הפיצ'ר</li><li>IT: "תעשו מודול במזור"</li>
+        <li>דרישות אבטחת מידע</li><li>קיימוּת לאורך זמן</li><li>התנגדות לאימוץ רשמי</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">7 · אמת לא-מיופה</span>
+    <h2>Reality Check</h2>
+    <ul class="swot t" style="background:#fff;border-color:var(--border)">
+      <li><b>לא מוצר ייחודי-עולמית</b> — GHX/Lumere/Prodigo עושים זאת בקנה-מידה ענק. החוזק שלך: מקומיוּת + מיקוד + מהירות.</li>
+      <li><b>טכנית זה היום אב-טיפוס</b>, לא "מערכת" — דף סטטי עם נתונים ידניים. IT יזהו מיד.</li>
+      <li><b>הסיכון הגדול הוא ארגוני, לא טכנולוגי</b> — Shadow-IT שנדחה כי לא עבר אבטחת-מידע/רכש.</li>
+      <li><b>קיימוּת</b> — אם רק את מעדכנת, זה נכס שמת ביום שתעזבי.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">8 · פריצה</span>
+    <h2>כיווני בידול ומיצוב — איך מנצחים מול ההנהלה</h2>
+    <ol class="steps">
+      <li><b>מקמי כשכבה מעל מזור, לא מתחרה.</b> "מזור מנהל רכש; אני הופכת אותו לשמיש קלינית בנקודת השימוש." את מחזיקה את מק"ט מזור — זה הגשר.</li>
+      <li><b>מכרי תוצאה, לא פיצ'ר.</b> מדדים: % תקנון · ₪ חיסכון/רבעון · ↓ פג-תוקף · זמן-איתור-פריט · זמן-חניכת-עובד. הביאי יעד אחד ל-Pilot.</li>
+      <li><b>Beachhead = קרדיולוגיה, ואז Template.</b> דף-דרך לשכפול ל-IR/EP/ניתוחי-לב/אורתו — אותו מבנה, דאטה אחרת. כך "כלי מחלקתי" הופך "פלטפורמה מוסדית".</li>
+      <li><b>הבידול האמיתי = ראיה קלינית מ-KOLs מקומיים</b> (Barbash/Guetta/Fefer/Segev...). ERP יבש לעולם לא ייתן זאת. ליבה, לא קישוט.</li>
+      <li><b>קפצי לגל ה-AI:</b> שאילתת-שפה-טבעית — "מה השווה-ערך הזול ל-PIG 5F 110cm?". זה שהופך טבלה ל-game changer.</li>
+      <li><b>נטרלי את IT מראש:</b> Pilot → סקר אבטחת-מידע → בעלוּת-נתונים מוסדרת → אימוץ רשמי. זה ההבדל בין פרויקט-צד למערכת מאומצת.</li>
+    </ol>
+    <div class="callout" style="border-right-color:var(--teal)">
+      <b style="color:var(--teal-h)">בקיצור:</b> הקטגוריה מוכחת והפער הישראלי אמיתי — אבל צריך לעבור מ"דף שעובד" ל"Pilot עם מדד-ערך אחד ומסלול-אימוץ", ולמסגר הכל כשכבה-קלינית-מעל-מזור.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">מקורות</span>
+    <h2>מקורות (אומתו)</h2>
+    <div class="sources">
+      <a href="https://he.wikipedia.org/wiki/%D7%9E%D7%A8%D7%9B%D7%91%22%D7%94" target="_blank" rel="noopener">מרכב״ה — ויקיפדיה</a> ·
+      <a href="https://next.obudget.org/i/tenders/exemptions/571330/none" target="_blank" rel="noopener">מערכת נמר — מפתח התקציב</a> ·
+      <a href="https://www.mevaker.gov.il/he/Reports/Report_292/e9f227a5-9d99-4759-9add-a9e802491b35/part225-namer.docx" target="_blank" rel="noopener">פרויקט נמ״ר — מבקר המדינה</a> ·
+      <a href="https://www.pc.co.il/news/231506/" target="_blank" rel="noopener">SAP בבתי חולים — PC.co.il</a> ·
+      <a href="https://www.ghx.com/value-analysis-providers/" target="_blank" rel="noopener">GHX Lumere — Value Analysis</a> ·
+      <a href="https://www.ghx.com/clinical-integration-solutions/" target="_blank" rel="noopener">GHX Clinical Integration</a> ·
+      <a href="https://www.ghx.com/platform/" target="_blank" rel="noopener">GHX Platform</a> ·
+      <a href="https://www.prodigosolutions.com/solutions/products/marketplace" target="_blank" rel="noopener">Prodigo Marketplace</a> ·
+      <a href="https://www.cardinalhealth.com/en/solutions/wavemark-supply-management/procedural-lab-solutions.html" target="_blank" rel="noopener">Cardinal Health WaveMark</a> ·
+      <a href="https://qsight.net/default.asp" target="_blank" rel="noopener">QSight (Owens &amp; Minor)</a> ·
+      <a href="https://www.globalmedicsgroup.com/all-products/inventory-management-systems/smartcabinet.html" target="_blank" rel="noopener">LogiTag SmartCabinet</a> ·
+      <a href="https://news.sap.com/2026/03/next-gen-sap-ariba-foundation-for-intelligent-procurement/" target="_blank" rel="noopener">Next-Gen SAP Ariba (AI)</a> ·
+      <a href="https://www.levelpath.com/glossary/ai-procurement-solutions" target="_blank" rel="noopener">AI Procurement 2026 — Levelpath</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="copy">© <span id="y">2026</span> <b>Rinat Etus</b> — כל הזכויות שמורות · All rights reserved.</div>
+    <div class="sub">מסמך אסטרטגי · מבוסס מחקר שוק ומקורות פומביים · אינו מהווה ייעוץ משפטי/רכש מחייב.</div>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
