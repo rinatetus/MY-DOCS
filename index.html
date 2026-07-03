@@ -359,6 +359,7 @@ footer a{color:var(--teal-soft);font-weight:600;}
 .pc.pc-empty:hover{filter:none;}
 .pc-price{font-weight:800;font-size:.92rem;direction:ltr;line-height:1.15;}
 .pc-ils{display:block;font-size:.66rem;font-weight:700;opacity:.72;}
+.pc-usd{display:block;font-size:.64rem;font-weight:700;color:var(--muted);direction:ltr;}
 .pc-code{font-size:.66rem;color:var(--inbal-navy);font-weight:700;margin:2px auto 0;direction:ltr;
   max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .pc-ref{font-size:.6rem;color:var(--inbal-teal-d);direction:ltr;font-weight:600;}
@@ -1258,11 +1259,10 @@ function matrixHTML(list){
       const cls=rankClass(v);
       sav[k].n++; if(i===cheapIdx) sav[k].win++;
       if(maxILS>0) sav[k].pct+=(1-v/maxILS)*100;
-      const usd=o.currency==="$";
-      const main=`${esc(o.currency||'')}${esc(o.price)}`;
-      const approx=usd?`<span class="pc-ils">≈ ₪${Math.round(v)}</span>`:"";
+      const ilsV=Math.round(v*100)/100;                                    // ₪ value, max 2 decimals
+      const usdV=o.currency==="₪" ? Math.round(v/USD_ILS*100)/100 : Math.round(parseFloat(o.price)*100)/100;
       return `<td class="pc ${cls}" title="הוסף לסל: ${esc(o.name||'')} · ${esc(SUPPLIERS[k].label)}" onclick="addToCart('${payloadFor(p,o)}')">
-        <div class="pc-price">${main}${approx}</div>
+        <div class="pc-price">₪${ilsV}<span class="pc-usd">$${usdV}</span></div>
         <div class="pc-code" title="${esc(o.fullName||o.name||'')}">${esc(o.name||'—')}</div>
         ${o.ref?`<div class="pc-ref">REF ${esc(o.ref)}</div>`:''}
         ${o.unitNote?`<div class="pc-note">${esc(o.unitNote)}</div>`:''}
