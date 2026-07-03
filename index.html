@@ -362,6 +362,7 @@ footer a{color:var(--teal-soft);font-weight:600;}
 .pc-code{font-size:.66rem;color:var(--inbal-navy);font-weight:700;margin:2px auto 0;direction:ltr;
   max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .pc-ref{font-size:.6rem;color:var(--inbal-teal-d);direction:ltr;font-weight:600;}
+.pc-note{font-size:.58rem;color:var(--inbal-yellow-d);font-weight:800;margin-top:1px;}
 .pc-add{position:absolute;top:5px;left:5px;opacity:0;color:#fff;background:var(--inbal-teal);
   border-radius:6px;width:19px;height:19px;display:grid;place-items:center;transition:.12s;}
 .pc:hover .pc-add{opacity:1;}
@@ -394,13 +395,33 @@ footer a{color:var(--teal-soft);font-weight:600;}
 .mm-v{width:22px;color:var(--inbal-navy);text-align:center;}
 .mm-na{color:#c2c3cf;}
 
-/* savings / impact footer */
-.cmp tfoot td{background:#fff9ec;border-top:2px solid var(--inbal-yellow);padding:10px 10px;
-  text-align:center;font-size:.72rem;color:var(--inbal-navy);position:sticky;bottom:0;}
-.mf-lbl{font-weight:800;color:var(--inbal-yellow-d);text-align:right;white-space:nowrap;}
-.mf-cell b{display:block;font-size:1.05rem;color:var(--inbal-navy);line-height:1.1;}
-.mf-cell span{display:block;font-size:.66rem;color:var(--inbal-teal-d);font-weight:700;}
-.mf-cell.mf-best{background:#eafaf0;}
+/* savings-by-supplier strip (above the table) */
+.sav-strip{background:linear-gradient(100deg,#fff8e8,#eef7f7);border:1px solid var(--border);
+  border-radius:16px;padding:13px 16px;margin-bottom:14px;box-shadow:var(--shadow-sm);}
+.sav-t{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--inbal-navy);font-size:.9rem;margin-bottom:11px;flex-wrap:wrap;}
+.sav-t svg{color:var(--inbal-yellow-d);flex:none;}
+.sav-t small{font-weight:600;color:var(--muted);font-size:.72rem;}
+.sav-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.sav-card{position:relative;background:#fff;border:1px solid var(--border);border-top:4px solid var(--sc);
+  border-radius:13px;padding:12px 10px 11px;text-align:center;transition:.15s;}
+.sav-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.sav-card.is-best{box-shadow:0 0 0 2px var(--inbal-yellow),var(--shadow-sm);}
+.sav-sup{font-size:.74rem;font-weight:800;color:var(--sc);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sav-pct{font-size:1.5rem;font-weight:900;color:var(--inbal-navy);line-height:1.1;margin:3px 0 1px;direction:ltr;}
+.sav-meta{font-size:.68rem;color:var(--inbal-teal-d);font-weight:700;}
+.sav-badge{margin-top:7px;display:inline-block;background:var(--inbal-yellow);color:#5a4200;font-size:.62rem;
+  font-weight:800;padding:2px 9px;border-radius:999px;}
+@media(max-width:720px){.sav-cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:420px){.sav-cards{grid-template-columns:1fr;}}
+
+/* savings / impact footer row (bottom of each column) */
+.cmp tfoot td{background:#fff9ec;border-top:3px solid var(--inbal-yellow);padding:11px 10px;
+  text-align:center;font-size:.72rem;color:var(--inbal-navy);}
+.mf-lbl{font-weight:800;color:var(--inbal-yellow-d);text-align:right;white-space:nowrap;line-height:1.2;}
+.mf-cell b{display:block;font-size:1.2rem;font-weight:900;color:var(--inbal-navy);line-height:1.05;direction:ltr;}
+.mf-cell span{display:block;font-size:.64rem;color:var(--inbal-teal-d);font-weight:700;}
+.mf-cell em{display:block;font-size:.6rem;color:var(--muted);font-style:normal;font-weight:700;margin-top:1px;}
+.mf-cell.mf-best{background:#eafaf0;box-shadow:inset 0 0 0 2px #bfe6cf;}
 
 @media(max-width:560px){
   .cmp{font-size:.8rem;min-width:900px;}
@@ -678,6 +699,14 @@ const SUPPLIERS = {
   Medtechnica:{label:"MEDTECHNICA",manu:"Boston Scientific",color:"#2563eb"}
 };
 const CATLABEL = {diagnostic:"Diagnostic Catheter", guiding:"Guiding Catheter"};
+
+// Medtronic (Medinol) diagnostic catheters are list-priced per box of 5 →
+// normalize to a per-unit price (₪190 / 5 = ₪38) so the comparison is apples-to-apples.
+DATA.forEach(p=>{ if(p.category==="diagnostic") p.options.forEach(o=>{
+  if(o.distributor==="Medtronic"){ const v=parseFloat(o.price);
+    if(isFinite(v)){ o.price=String(Math.round(v/5*100)/100); o.unitNote="יח' · מארז 5"; }
+  }
+});});
 
 const ICON = {
   heart:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A4.5 4.5 0 0 0 12 5 4.5 4.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg>',
@@ -1236,6 +1265,7 @@ function matrixHTML(list){
         <div class="pc-price">${main}${approx}</div>
         <div class="pc-code" title="${esc(o.fullName||o.name||'')}">${esc(o.name||'—')}</div>
         ${o.ref?`<div class="pc-ref">REF ${esc(o.ref)}</div>`:''}
+        ${o.unitNote?`<div class="pc-note">${esc(o.unitNote)}</div>`:''}
         <span class="pc-add">${ICON.plus}</span>
       </td>`;
     }).join("");
@@ -1258,16 +1288,29 @@ function matrixHTML(list){
     </tr>`;
   }).join("");
   const bestWin=Math.max(...SUP_ORDER.map(k=>sav[k].win),0);
+  const savOf=k=>{const s=sav[k];return s.n?Math.round(s.pct/s.n):null;};
   const foot=`<tr>
-    <td></td><td class="mf-lbl">השפעה · חיסכון</td>
+    <td></td><td class="mf-lbl">אחוז חיסכון<br>ממוצע ↓</td>
     ${SUP_ORDER.map(k=>{const s=sav[k];
       if(!s.n) return `<td class="mf-cell">—</td>`;
-      const avg=Math.round(s.pct/s.n);
+      const avg=savOf(k);
       const best=s.win>0&&s.win===bestWin;
-      return `<td class="mf-cell ${best?'mf-best':''}"><b>${s.win}</b>מוביל בשורות<span>${avg>0?('~'+avg+'% חיסכון ממוצע'):'—'}</span></td>`;}).join("")}
+      return `<td class="mf-cell ${best?'mf-best':''}"><b>${avg>0?('~'+avg+'%'):'0%'}</b><span>חיסכון ממוצע</span><em>מוביל ב-${s.win} שורות</em></td>`;}).join("")}
     <td colspan="4"></td>
   </tr>`;
-  return `<div class="cmp-wrap"><table class="cmp"><thead>${head}</thead><tbody>${body}</tbody><tfoot>${foot}</tfoot></table></div>`;
+  const strip=`<div class="sav-strip">
+    <div class="sav-t">${coinIcon()} השפעת חיסכון לפי ספק <small>ממוצע מול החלופה היקרה בכל שורה · ומספר השורות שבהן הספק מוביל</small></div>
+    <div class="sav-cards">
+      ${SUP_ORDER.map(k=>{const s=sav[k];const avg=savOf(k);const best=s.win>0&&s.win===bestWin;
+        return `<div class="sav-card ${best?'is-best':''}" style="--sc:${SUPPLIERS[k].color}">
+          <div class="sav-sup">${esc(SUPPLIERS[k].label)}</div>
+          <div class="sav-pct">${s.n?(avg>0?('~'+avg+'%'):'0%'):'—'}</div>
+          <div class="sav-meta">${s.n?('מוביל ב-'+s.win+' שורות'):'לא בטבלה'}</div>
+          ${best?`<div class="sav-badge">הכי משתלם</div>`:''}
+        </div>`;}).join("")}
+    </div>
+  </div>`;
+  return strip + `<div class="cmp-wrap"><table class="cmp"><thead>${head}</thead><tbody>${body}</tbody><tfoot>${foot}</tfoot></table></div>`;
 }
 function cardHTML(p){
   const sku = p.options.map(o=>o.shebaSku).find(Boolean);
@@ -1431,6 +1474,7 @@ function sendWhatsApp(){ if(!cart.length)return toast("הסל ריק"); window.o
 function dot(){return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>';}
 function citeIcon(){return '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';}
 function infoIcon(){return '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>';}
+function coinIcon(){return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5a2.5 2.5 0 0 0-2.5-1.5h-1a2 2 0 0 0 0 4h1a2 2 0 0 1 0 4h-1A2.5 2.5 0 0 1 9 14.5M12 6.5v1M12 16.5v1"/></svg>';}
 function printIcon(){return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>';}
 ICON.chevS=()=>'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="opacity:.5"><path d="m9 6 6 6-6 6"/></svg>';
 function toast(msg){const t=document.getElementById("toast");t.innerHTML=`<span class="ti">${checkIcon()}</span> ${esc(msg)}`;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2600);}
