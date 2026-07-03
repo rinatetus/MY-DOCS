@@ -292,6 +292,122 @@ footer{background:var(--navy);color:rgba(255,255,255,.8);padding:26px 32px;font-
 footer b{color:#fff;}
 footer a{color:var(--teal-soft);font-weight:600;}
 
+/* ============================================================
+   COMPARISON MATRIX  ·  ענבל-inspired palette (navy / teal / gold)
+   ============================================================ */
+:root{
+  --inbal-navy:#1b2a63; --inbal-teal:#14868c; --inbal-teal-d:#0f6f74;
+  --inbal-yellow:#f5b71e; --inbal-yellow-d:#c98f06;
+  --p-green:#12925f; --p-green-bg:#e4f6ec;
+  --p-blue:#2563eb;  --p-blue-bg:#e7effe;
+  --p-orange:#e07b12;--p-orange-bg:#fdf0dd;
+  --p-red:#d33b3b;   --p-red-bg:#fbe6e6;
+}
+/* section header band + count badge */
+.head-band{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;}
+.head-band h1{margin:0;}
+.count-badge{background:var(--inbal-yellow);color:#5a4200;font-weight:800;font-size:.8rem;
+  padding:4px 13px;border-radius:999px;box-shadow:0 2px 8px rgba(245,183,30,.35);}
+.mx-clin-link{margin-right:auto;font-size:.82rem;font-weight:700;color:var(--inbal-teal);
+  display:inline-flex;align-items:center;gap:5px;cursor:pointer;}
+.mx-clin-link:hover{color:var(--inbal-teal-d);}
+
+/* price-key legend */
+.pricekey{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  background:linear-gradient(100deg,#eef7f7,#fff8e8);border:1px solid var(--border);
+  border-radius:14px;padding:11px 16px;margin-bottom:14px;}
+.pk-t{font-weight:800;color:var(--inbal-navy);font-size:.85rem;display:flex;align-items:center;gap:7px;}
+.pk-t svg{color:var(--inbal-yellow-d);}
+.pk-legend{display:flex;gap:14px;flex-wrap:wrap;margin-right:auto;}
+.pk-legend span{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;color:var(--inbal-navy);}
+.pk-legend i{width:13px;height:13px;border-radius:4px;box-shadow:0 0 0 3px rgba(0,0,0,.03);}
+.pk-legend i.d-green{background:var(--p-green);}
+.pk-legend i.d-blue{background:var(--p-blue);}
+.pk-legend i.d-orange{background:var(--p-orange);}
+.pk-legend i.d-red{background:var(--p-red);}
+
+/* filter chips */
+.chipbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
+.chipbar .lbl{font-size:.72rem;font-weight:800;color:var(--inbal-navy);opacity:.7;margin-left:2px;}
+.fchip{border:1.5px solid var(--border);background:#fff;color:var(--inbal-navy);font-weight:700;
+  font-size:.8rem;padding:6px 15px;border-radius:999px;transition:.14s;position:relative;}
+.fchip:hover{border-color:var(--cc,var(--inbal-teal));transform:translateY(-1px);}
+.fchip.on{background:var(--cc,var(--inbal-navy));color:#fff;border-color:var(--cc,var(--inbal-navy));
+  box-shadow:0 3px 10px rgba(27,42,99,.18);}
+.fchip .dotc{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--cc);margin-left:6px;vertical-align:middle;}
+.fchip.on .dotc{background:#fff;}
+
+/* the matrix table */
+.cmp-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-sm);
+  background:#fff;-webkit-overflow-scrolling:touch;}
+.cmp{border-collapse:separate;border-spacing:0;width:100%;min-width:940px;font-size:.86rem;}
+.cmp thead th{position:sticky;top:0;z-index:5;background:var(--inbal-navy);color:#fff;
+  padding:10px 12px;font-weight:700;text-align:center;white-space:nowrap;font-size:.8rem;}
+.cmp thead th.mh-proc{text-align:right;}
+.mh-sup b{display:block;font-size:.92rem;letter-spacing:.3px;}
+.mh-sup span{display:block;font-size:.67rem;opacity:.85;font-weight:500;}
+.mh-sup{background:var(--sc)!important;border-bottom:4px solid rgba(0,0,0,.18);}
+.cmp tbody td{border-bottom:1px solid var(--border);vertical-align:middle;}
+.cmp tbody tr:hover{background:#f7f9ff;}
+.cmp tbody tr:last-child td{border-bottom:none;}
+
+/* price cells */
+.pc{padding:8px 10px;text-align:center;border-left:1px solid #f0f1f5;cursor:pointer;
+  transition:.12s;position:relative;min-width:100px;}
+.pc:hover{filter:brightness(.96);}
+.pc.pc-empty{color:#c2c3cf;cursor:default;}
+.pc.pc-empty:hover{filter:none;}
+.pc-price{font-weight:800;font-size:.92rem;direction:ltr;line-height:1.15;}
+.pc-ils{display:block;font-size:.66rem;font-weight:700;opacity:.72;}
+.pc-code{font-size:.66rem;color:var(--inbal-navy);font-weight:700;margin:2px auto 0;direction:ltr;
+  max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pc-ref{font-size:.6rem;color:var(--inbal-teal-d);direction:ltr;font-weight:600;}
+.pc-add{position:absolute;top:5px;left:5px;opacity:0;color:#fff;background:var(--inbal-teal);
+  border-radius:6px;width:19px;height:19px;display:grid;place-items:center;transition:.12s;}
+.pc:hover .pc-add{opacity:1;}
+.p-green{background:var(--p-green-bg);}  .p-green .pc-price{color:var(--p-green);}
+.p-blue{background:var(--p-blue-bg);}    .p-blue .pc-price{color:var(--p-blue);}
+.p-orange{background:var(--p-orange-bg);}.p-orange .pc-price{color:var(--p-orange);}
+.p-red{background:var(--p-red-bg);}      .p-red .pc-price{color:var(--p-red);}
+.p-green::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:var(--p-green);}
+
+/* row meta cells */
+.mc-cart{padding:6px 8px;text-align:center;}
+.mc-proc{padding:9px 13px;min-width:184px;text-align:right;}
+.mc-title{font-weight:800;color:var(--inbal-navy);font-size:.9rem;line-height:1.2;}
+.mc-sub{font-size:.74rem;color:var(--inbal-teal-d);font-weight:600;margin-top:1px;}
+.mc-sku{font-size:.63rem;color:#9a9bab;direction:ltr;font-weight:600;}
+.mc-len{font-weight:700;color:var(--ink);direction:ltr;white-space:nowrap;text-align:center;font-size:.8rem;}
+.mc-fr{font-weight:800;color:var(--inbal-navy);text-align:center;direction:ltr;}
+.type-pill{display:inline-block;background:var(--navy-bg);color:var(--inbal-navy);font-weight:800;
+  padding:3px 13px;border-radius:999px;font-size:.82rem;direction:ltr;white-space:nowrap;}
+
+/* min / max mini-bars */
+.mm{display:flex;flex-direction:column;gap:5px;min-width:118px;padding:2px 4px;}
+.mm-row{display:flex;align-items:center;gap:7px;font-size:.64rem;font-weight:800;}
+.mm-k{width:28px;color:var(--muted);letter-spacing:.4px;}
+.mm-bar{position:relative;flex:1;height:5px;background:#eceef4;border-radius:4px;}
+.mm-bar i{position:absolute;right:0;top:0;height:100%;border-radius:4px;background:linear-gradient(90deg,#f0b3b3,#d33b3b);}
+.mm-bar i.mx{background:linear-gradient(90deg,#bfe6cf,#12925f);}
+.mm-dot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(50%,-50%);box-shadow:0 0 0 2px #fff;}
+.mm-dot.red{background:#d33b3b;} .mm-dot.green{background:#12925f;}
+.mm-v{width:22px;color:var(--inbal-navy);text-align:center;}
+.mm-na{color:#c2c3cf;}
+
+/* savings / impact footer */
+.cmp tfoot td{background:#fff9ec;border-top:2px solid var(--inbal-yellow);padding:10px 10px;
+  text-align:center;font-size:.72rem;color:var(--inbal-navy);position:sticky;bottom:0;}
+.mf-lbl{font-weight:800;color:var(--inbal-yellow-d);text-align:right;white-space:nowrap;}
+.mf-cell b{display:block;font-size:1.05rem;color:var(--inbal-navy);line-height:1.1;}
+.mf-cell span{display:block;font-size:.66rem;color:var(--inbal-teal-d);font-weight:700;}
+.mf-cell.mf-best{background:#eafaf0;}
+
+@media(max-width:560px){
+  .cmp{font-size:.8rem;min-width:900px;}
+  .mc-proc{min-width:150px;}
+  .pk-legend{margin-right:0;width:100%;}
+}
+
 /* mobile */
 .menu-toggle{display:none;}
 @media(max-width:980px){
@@ -555,11 +671,11 @@ const PRODS = [{"sku": "10000530", "desc": "CATHETER DIAGNOSTIC IMPULSE"}, {"sku
 const PHONE_INTL = "972547265532";
 /* ============ MedOrder · Sheba Medical Center · Multi-Department Procurement ============ */
 const SUPPLIERS = {
-  Medtechnica:{label:"Medtechnica",manu:"Boston Scientific",color:"#25BA9C"},
-  Gad:{label:"Gad",manu:"Terumo",color:"#EB3D85"},
-  Duke:{label:"Duke",manu:"Cordis",color:"#27236D"},
-  Medtronic:{label:"Medtronic",manu:"Medtronic",color:"#1F9E85"},
-  Getter:{label:"Getter",manu:"Cook",color:"#C83471"}
+  Getter:{label:"GETTER",manu:"Cook Medical",color:"#1f9d57"},
+  Medtronic:{label:"MEDTRONIC",manu:"Medinol",color:"#14868c"},
+  Duke:{label:"DUKE",manu:"Cordis",color:"#e07b12"},
+  Gad:{label:"GAD Medical",manu:"Terumo",color:"#6b3fa0"},
+  Medtechnica:{label:"MEDTECHNICA",manu:"Boston Scientific",color:"#2563eb"}
 };
 const CATLABEL = {diagnostic:"Diagnostic Catheter", guiding:"Guiding Catheter"};
 
@@ -725,7 +841,7 @@ function renderSidebar(active){
     if(g.subs){
       g.subs.forEach(s=>{
         const isAct = active.sub===s.id;
-        html += `<a class="${isAct?'active':''}" onclick="go('#/clin/${s.id}')"><span>${s.label}</span><span class="cnt">${counts[s.id]}</span></a>`;
+        html += `<a class="${isAct?'active':''}" onclick="go('#/cat/cardiology/${s.id}')"><span>${s.label}</span><span class="cnt">${counts[s.id]}</span></a>`;
       });
     } else {
       html += `<a class="dim" onclick="go('#/soon/${encodeURIComponent(g.label)}')"><span>${g.label}</span><span class="soon">בקרוב</span></a>`;
@@ -775,10 +891,10 @@ function renderHome(){
   const m = document.getElementById("main");
   const dC = CLINICAL.diagnostic.procs.length, gC = CLINICAL.guiding.procs.length;
   const devices = [
-    hubCard({color:"teal",   icon:ICON.cath,   title:"Diagnostic Catheters", sub:"קתטרים אבחנתיים",
-      foot:`${dC} פרוצדורות · ${counts.diagnostic} פריטים`, onclick:"go('#/clin/diagnostic')", delay:0}),
-    hubCard({color:"magenta",icon:ICON.cath,   title:"Guiding Catheters", sub:"קתטרים מובילים",
-      foot:`${gC} פרוצדורות · ${counts.guiding} פריטים`, onclick:"go('#/clin/guiding')", delay:55}),
+    hubCard({color:"teal",   icon:ICON.cath,   title:"Diagnostic Catheters", sub:"קתטרים אבחנתיים · השוואת ספקים",
+      foot:`${counts.diagnostic} פריטים · טבלת השוואה`, onclick:"go('#/cat/cardiology/diagnostic')", delay:0}),
+    hubCard({color:"magenta",icon:ICON.cath,   title:"Guiding Catheters", sub:"קתטרים מובילים · השוואת ספקים",
+      foot:`${counts.guiding} פריטים · טבלת השוואה`, onclick:"go('#/cat/cardiology/guiding')", delay:55}),
     hubCard({color:"purple", icon:ICON.sheath, title:"Introducer Sheaths", sub:"Radial · Large-bore",
       soon:true, onclick:"go('#/soon/Introducer%20Sheaths')", delay:110}),
     hubCard({color:"blue",   icon:ICON.wire,   title:"Guidewires", sub:"Coronary · Support",
@@ -969,25 +1085,62 @@ function renderCatalog(deptId, subId){
   renderSidebar({dept:"cardiology", sub:subId});
   const m = document.getElementById("main");
   const frenchSet = [...new Set(DATA.map(p=>p.french).filter(Boolean))].sort((a,b)=>parseFloat(a)-parseFloat(b));
-  const subLabel = subId==="diagnostic"?"Diagnostic Catheters":subId==="guiding"?"Guiding Catheters":"כל הקתטרים";
+  const subLabel = subId==="diagnostic"?"Angiographic Catheters":subId==="guiding"?"Guiding Catheters":"כל הקתטרים";
+  const subHe    = subId==="diagnostic"?"קטטרים אבחנתיים":subId==="guiding"?"קטטרים מובילים":"קטטרים אבחנתיים וטיפוליים";
   m.innerHTML = `
-    <div class="crumbs"><a onclick="go('#/home')">דף הבית</a> ${ICON.chevS()} <a onclick="go('#/home')">Cardiology · CathLab</a> ${ICON.chevS()} <b>${subLabel}</b></div>
-    <div class="page-head"><h1>${subLabel}</h1>
-      <p class="lead">כל שורה היא פרוצדורה (עקומה · French · אורך) עם החלופות שוות-הערך מכל הספקים. הוסיפי לסל ושגרי הזמנה.</p></div>
+    <div class="crumbs"><a onclick="go('#/home')">דף הבית</a> ${ICON.chevS()} <a onclick="go('#/home')">Cardiology · CathLab</a> ${ICON.chevS()} <b>${subHe}</b></div>
+    <div class="page-head">
+      <div class="head-band">
+        <h1>${subHe} <span style="color:var(--inbal-teal);font-weight:700;font-size:1.05rem"> / ${subLabel}</span></h1>
+        <span class="count-badge" id="cntBadge">0 פריטים</span>
+        <a class="mx-clin-link" onclick="go('#/clin/${subId==='guiding'?'guiding':'diagnostic'}')">לפי פרוצדורה קלינית ${ICON.arrow}</a>
+      </div>
+      <p class="lead">השוואה רוחבית בין ספקים — כל שורה היא קתטר שווה-ערך (סוג · French · אורך), עם המחיר ליחידה מכל ספק. הצבע מסמן את מדרג המחיר בשורה; בתחתית כל עמודה — השפעת החיסכון.</p>
+    </div>
+    <div class="pricekey">
+      <div class="pk-t">${infoIcon()} מפתח צבעים — מחיר ליחידה</div>
+      <div class="pk-legend">
+        <span><i class="d-green"></i> הכי זול</span>
+        <span><i class="d-blue"></i> טוב</span>
+        <span><i class="d-orange"></i> בינוני</span>
+        <span><i class="d-red"></i> יקר</span>
+      </div>
+    </div>
     <div class="filterbar">
       <div class="seg">
         <button data-sub="all" class="${subId==='all'?'active':''}">הכל</button>
         <button data-sub="diagnostic" class="${subId==='diagnostic'?'active diag':''}">Diagnostic</button>
         <button data-sub="guiding" class="${subId==='guiding'?'active guide':''}">Guiding</button>
       </div>
-      <select class="fsel" id="frenchSel"><option value="">כל מידות French</option>${frenchSet.map(f=>`<option value="${f}">${f}</option>`).join("")}</select>
-      <select class="fsel" id="supSel"><option value="">כל הספקים</option>${Object.keys(SUPPLIERS).map(k=>`<option value="${k}">${SUPPLIERS[k].label} · ${SUPPLIERS[k].manu}</option>`).join("")}</select>
       <span class="resinfo" id="resInfo"></span>
     </div>
-    <div id="catGrid"></div>`;
+    <div class="chipbar" id="supChips">
+      <span class="lbl">ספק:</span>
+      <button class="fchip ${!catState.supplier?'on':''}" data-sup="">הכל</button>
+      ${Object.keys(SUPPLIERS).map(k=>`<button class="fchip" data-sup="${k}" style="--cc:${SUPPLIERS[k].color}"><span class="dotc"></span>${esc(SUPPLIERS[k].label)}</button>`).join("")}
+    </div>
+    <div class="chipbar" id="frChips">
+      <span class="lbl">French:</span>
+      <button class="fchip on" data-fr="">הכל</button>
+      ${frenchSet.map(f=>`<button class="fchip" data-fr="${esc(f)}">${esc(f)}</button>`).join("")}
+    </div>
+    <div id="catGrid"></div>
+    <div class="panel" style="margin-top:18px">
+      <h3><span class="hi">${citeIcon()}</span> בסיס ההשוואה — שוות-ערך קלינית (תפוח לתפוח)</h3>
+      <p style="font-size:.9rem">כל שורה מקבצת קתטרים בעלי <b>אותה עקומה (Curve), אותו קוטר (French) ואותו אורך</b> — כך שההשוואה היא בין חלופות מתפקדות זהות מיצרנים שונים (Boston Scientific · Terumo · Cordis · Medtronic·Medinol · Cook). כאשר לספק אין את הפריט המדויק, התא מסומן «—» ויש לבחור את החלופה שוות-הערך הקרובה ביותר לפי אותה עקומה/מידה.</p>
+      <div class="cites">
+        <a class="cite" href="https://doi.org/10.1016/j.iccl.2025.05.003" target="_blank"><span class="ci">${citeIcon()}</span> Ikari Y. — Diagnostic &amp; Guide Catheter Choices for Upper-Extremity Access, Interv Cardiol Clin 2025 <span class="ce">${ICON.chev}</span></a>
+        <a class="cite" href="https://doi.org/10.1111/joic.12286" target="_blank"><span class="ci">${citeIcon()}</span> Turan B. et al. — Left Judkins as single multipurpose catheter (RCT), J Interv Cardiol 2016 <span class="ce">${ICON.chev}</span></a>
+        <a class="cite" href="https://doi.org/10.1002/ccd.70284" target="_blank"><span class="ci">${citeIcon()}</span> Gebremedhin ML. et al. — Efficacy of EBU guide catheter in RCA PCI, Catheter Cardiovasc Interv 2025 <span class="ce">${ICON.chev}</span></a>
+      </div>
+      <div class="disclaimer" style="margin-top:14px"><span class="di">${infoIcon()}</span>
+        <div><b>הבהרה:</b> המקורות מ-PubMed. שער ההמרה ₪/$ (≈${USD_ILS}) הוא אינדיקטיבי ומשמש למדרג הצבע בלבד — המחיר המחייב הוא מחיר המכרז במטבע המקורי. אין באמור תחליף לשיקול דעת קליני או להוראות היצרן (IFU).</div></div>
+    </div>`;
   document.querySelector(".seg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;go('#/cat/cardiology/'+b.dataset.sub);});
-  document.getElementById("frenchSel").addEventListener("change",e=>{catState.french=e.target.value;drawCatalog();});
-  document.getElementById("supSel").addEventListener("change",e=>{catState.supplier=e.target.value;drawCatalog();});
+  document.getElementById("supChips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+    catState.supplier=b.dataset.sup;[...e.currentTarget.querySelectorAll(".fchip")].forEach(x=>x.classList.toggle("on",x===b));drawCatalog();});
+  document.getElementById("frChips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+    catState.french=b.dataset.fr;[...e.currentTarget.querySelectorAll(".fchip")].forEach(x=>x.classList.toggle("on",x===b));drawCatalog();});
   drawCatalog();
 }
 function drawCatalog(){
@@ -999,8 +1152,122 @@ function drawCatalog(){
     return matchProduct(p, toks);
   });
   const info = document.getElementById("resInfo");
-  if(info) info.textContent = list.length+" פרוצדורות";
-  document.getElementById("catGrid").innerHTML = list.length? `<div class="grid">${list.map(cardHTML).join("")}</div>` : emptyHTML();
+  if(info) info.textContent = list.length+" קתטרים · "+Object.keys(SUPPLIERS).length+" ספקים";
+  const badge = document.getElementById("cntBadge");
+  if(badge) badge.textContent = list.length+" פריטים";
+  document.getElementById("catGrid").innerHTML = list.length? matrixHTML(list) : emptyHTML();
+}
+
+/* ===== Comparison matrix ===== */
+const USD_ILS = 3.7; // שער חליפין אינדיקטיבי — לצורך מדרג/השוואה בלבד
+const SUP_ORDER = ["Medtechnica","Gad","Duke","Medtronic","Getter"]; // right→left in RTL
+function toILS(o){ const v=parseFloat(o&&o.price); if(!isFinite(v)) return null; return (o.currency==="₪")?v:v*USD_ILS; }
+function priceCellClass(ils,minILS){
+  if(ils==null) return "";
+  if(minILS<=0) return "p-green";
+  const r=ils/minILS-1;
+  if(r<=0.001) return "p-green";
+  if(r<=0.18)  return "p-blue";
+  if(r<=0.45)  return "p-orange";
+  return "p-red";
+}
+function payloadFor(p,o){
+  return btoa(unescape(encodeURIComponent(JSON.stringify({
+    id:p.id, curve:p.curve, french:p.french, length:p.length, cat:p.category,
+    dist:o.distributor, manu:o.manufacturer, name:o.name, ref:o.ref, sku:o.shebaSku||"", price:o.price||"", cur:o.currency||""
+  }))));
+}
+const CURVE_INFO = {
+  JL:{en:"Judkins Left",he:"קתטריזציה כלילית שמאל"}, JR:{en:"Judkins Right",he:"קתטריזציה כלילית ימין"},
+  AL:{en:"Amplatz Left",he:"תמיכה — כלילי שמאל"},   AR:{en:"Amplatz Right",he:"מעקפים / כלילי ימין"},
+  MPA:{en:"Multipurpose",he:"רב-תכליתי"}, MP:{en:"Multipurpose",he:"רב-תכליתי"},
+  PIG:{en:"Pigtail",he:"חדר / אבי העורקים"}, SIM:{en:"Simmons",he:"גישה סלקטיבית היקפית"},
+  IM:{en:"Internal Mammary",he:"עורק חזה פנימי / מעקף"}, EBU:{en:"EBU · Extra Back-Up",he:"תמיכה מוגברת — שמאל"},
+  XB:{en:"Extra Back-Up",he:"תמיכה מוגברת"}, VTK:{en:"Vitek",he:"קשת אבי העורקים"},
+  BER:{en:"Berenstein",he:"גישה סלקטיבית"}, VBT:{en:"Vertebral",he:"עורק חולייתי"},
+  MACH:{en:"Mach",he:"קתטר מוביל"}, FL:{en:"Femoral Left",he:"גישה פמורלית שמאל"},
+  FR:{en:"Femoral Right",he:"גישה פמורלית ימין"}, HNB:{en:"Headhunter",he:"גישה קרוטידית"},
+  HH:{en:"Headhunter",he:"גישה קרוטידית"}, "3DRC":{en:"3D RCA",he:"כלילי ימין"},
+  BEACON:{en:"Beacon Tip",he:"קצה מסומן"}, XBRCA:{en:"XB RCA",he:"תמיכה — כלילי ימין"}
+};
+function curveInfo(curve){
+  const c=(curve||"").toUpperCase().trim();
+  const key=Object.keys(CURVE_INFO).sort((a,b)=>b.length-a.length).find(k=>c.startsWith(k));
+  return key?CURVE_INFO[key]:null;
+}
+function minmaxCell(p){
+  const mn=parseFloat(p.min), mx=parseFloat(p.max);
+  if(!isFinite(mn)&&!isFinite(mx)) return '<span class="mm-na">—</span>';
+  const cap=Math.max(isFinite(mx)?mx:0,isFinite(mn)?mn:0,1);
+  const mnp=Math.max(4,Math.round(((isFinite(mn)?mn:0)/cap)*100));
+  const mxp=Math.max(4,Math.round(((isFinite(mx)?mx:0)/cap)*100));
+  return `<div class="mm">
+    <div class="mm-row"><span class="mm-k">MIN</span><div class="mm-bar"><i style="width:${mnp}%"></i><b class="mm-dot red" style="right:${mnp}%"></b></div><span class="mm-v">${isFinite(mn)?mn:'—'}</span></div>
+    <div class="mm-row"><span class="mm-k">MAX</span><div class="mm-bar"><i class="mx" style="width:${mxp}%"></i><b class="mm-dot green" style="right:${mxp}%"></b></div><span class="mm-v">${isFinite(mx)?mx:'—'}</span></div>
+  </div>`;
+}
+function matrixHTML(list){
+  const head = `<tr>
+    <th class="mh-cart"></th>
+    <th class="mh-proc">פרוצדורה</th>
+    ${SUP_ORDER.map(k=>{const s=SUPPLIERS[k];return `<th class="mh-sup" style="--sc:${s.color}"><b>${esc(s.label)}</b><span>${esc(s.manu)}</span></th>`;}).join("")}
+    <th>MIN/MAX</th><th>אורך</th><th>סוג קטטר</th><th>F</th>
+  </tr>`;
+  const sav={}; SUP_ORDER.forEach(k=>sav[k]={win:0,n:0,pct:0});
+  const body = list.map(p=>{
+    const byD={}; p.options.forEach(o=>{ if(!byD[o.distributor]) byD[o.distributor]=o; });
+    const ils=SUP_ORDER.map(k=>byD[k]?toILS(byD[k]):null);
+    const priced=ils.filter(v=>v!=null);
+    const minILS=priced.length?Math.min(...priced):0;
+    const maxILS=priced.length?Math.max(...priced):0;
+    const cheapIdx=ils.findIndex(v=>v!=null&&v===minILS);
+    const sorted=[...new Set(priced)].sort((a,b)=>a-b);      // ordinal rank per row
+    const rankClass=v=>['p-green','p-blue','p-orange','p-red'][Math.min(sorted.indexOf(v),3)];
+    const cells=SUP_ORDER.map((k,i)=>{
+      const o=byD[k], v=ils[i];
+      if(!o||v==null) return `<td class="pc pc-empty">—</td>`;
+      const cls=rankClass(v);
+      sav[k].n++; if(i===cheapIdx) sav[k].win++;
+      if(maxILS>0) sav[k].pct+=(1-v/maxILS)*100;
+      const usd=o.currency==="$";
+      const main=`${esc(o.currency||'')}${esc(o.price)}`;
+      const approx=usd?`<span class="pc-ils">≈ ₪${Math.round(v)}</span>`:"";
+      return `<td class="pc ${cls}" title="הוסף לסל: ${esc(o.name||'')} · ${esc(SUPPLIERS[k].label)}" onclick="addToCart('${payloadFor(p,o)}')">
+        <div class="pc-price">${main}${approx}</div>
+        <div class="pc-code" title="${esc(o.fullName||o.name||'')}">${esc(o.name||'—')}</div>
+        ${o.ref?`<div class="pc-ref">REF ${esc(o.ref)}</div>`:''}
+        <span class="pc-add">${ICON.plus}</span>
+      </td>`;
+    }).join("");
+    const ci=curveInfo(p.curve);
+    const sku=p.options.map(o=>o.shebaSku).find(Boolean);
+    const co=cheapIdx>=0?byD[SUP_ORDER[cheapIdx]]:null;
+    const rowAdd=co?`onclick="addToCart('${payloadFor(p,co)}')" title="הוסף את החלופה הזולה ביותר"`:'disabled title="אין מחיר זמין"';
+    return `<tr>
+      <td class="mc-cart"><button class="addbtn" ${rowAdd}>${ICON.plus}</button></td>
+      <td class="mc-proc">
+        <div class="mc-title">${esc(ci?ci.en:p.curve)}</div>
+        <div class="mc-sub">${esc(ci?ci.he:CATLABEL[p.category]||'')}</div>
+        ${sku?`<div class="mc-sku">שיבא ${esc(sku)}</div>`:''}
+      </td>
+      ${cells}
+      <td>${minmaxCell(p)}</td>
+      <td class="mc-len">${esc(p.length||'—')}</td>
+      <td style="text-align:center"><span class="type-pill">${esc(p.curve)}</span></td>
+      <td class="mc-fr">${esc(p.french||'—')}</td>
+    </tr>`;
+  }).join("");
+  const bestWin=Math.max(...SUP_ORDER.map(k=>sav[k].win),0);
+  const foot=`<tr>
+    <td></td><td class="mf-lbl">השפעה · חיסכון</td>
+    ${SUP_ORDER.map(k=>{const s=sav[k];
+      if(!s.n) return `<td class="mf-cell">—</td>`;
+      const avg=Math.round(s.pct/s.n);
+      const best=s.win>0&&s.win===bestWin;
+      return `<td class="mf-cell ${best?'mf-best':''}"><b>${s.win}</b>מוביל בשורות<span>${avg>0?('~'+avg+'% חיסכון ממוצע'):'—'}</span></td>`;}).join("")}
+    <td colspan="4"></td>
+  </tr>`;
+  return `<div class="cmp-wrap"><table class="cmp"><thead>${head}</thead><tbody>${body}</tbody><tfoot>${foot}</tfoot></table></div>`;
 }
 function cardHTML(p){
   const sku = p.options.map(o=>o.shebaSku).find(Boolean);
@@ -1061,8 +1328,16 @@ function renderSearch(q){
     knMatch.forEach(k=>{html+=`<div class="tile feat" onclick="go('#/proc/${k}')"><span class="arrow">${ICON.arrow}</span><div class="tic" style="background:var(--grad-cool)">${ICON.proc}</div><h3>${esc(KNOWLEDGE[k].code)}</h3><p>הסבר + ציוד נדרש</p></div>`;});
     html += `</div>`;
   }
-  html += `<div class="sec-head" style="margin-top:18px"><h3>🩺 ציוד · ${list.length} פרוצדורות</h3></div>`;
-  html += list.length? `<div class="grid">${list.map(cardHTML).join("")}</div>` : emptyHTML();
+  html += `<div class="sec-head" style="margin-top:18px"><h3>🩺 השוואת ספקים · ${list.length} קתטרים</h3></div>`;
+  if(list.length){
+    html += `<div class="pricekey">
+      <div class="pk-t">${infoIcon()} מפתח צבעים — מחיר ליחידה</div>
+      <div class="pk-legend">
+        <span><i class="d-green"></i> הכי זול</span><span><i class="d-blue"></i> טוב</span>
+        <span><i class="d-orange"></i> בינוני</span><span><i class="d-red"></i> יקר</span>
+      </div></div>`;
+    html += matrixHTML(list);
+  } else html += emptyHTML();
   m.innerHTML = html;
 }
 
